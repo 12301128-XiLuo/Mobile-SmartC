@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 
-import { Device } from '../../app/common/entity/device.entity';
+import { Device } from '../../../app/common/entity/device.entity';
 
 @Component({
 	selector: 'page-device-detail',
@@ -10,16 +10,17 @@ import { Device } from '../../app/common/entity/device.entity';
 
 export class DeviceDetailPage {
 	
-	device : any;
+	device: Device;
 	computer : boolean = false;
 
 	constructor(public navCtrl: NavController,public navParams: NavParams) {
-	    this.device = navParams.data
-	    console.log(this.device);
+	    this.device = navParams.data;
+	    console.log(this.device.computerStatus);
+	    this.initStatus();
 	 }
 
 	 initStatus(): void {
-	 		 	
+	 	this.device.computerStatus==0?this.computer=false: this.computer=true;	
 	 } 
 
 	 ngOnInit(): void {
