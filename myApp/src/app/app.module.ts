@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 import { HttpModule }    from '@angular/http';
 
 import { VideoPage } from '../pages/video/video';
-import { MessagePage } from '../pages/message/message';
+import { SettingsPage } from '../pages/settings/settings';
 import { DevicePage } from '../pages/device/device';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DeviceDetailPage } from '../pages/device/device-detail/deviceDetail';
@@ -28,7 +28,7 @@ import { BuildPipe } from './common/pipe/device.pipe';
   declarations: [
     MyApp,
     VideoPage,
-    MessagePage,
+    SettingsPage,
     DevicePage,
     TabsPage,
     DeviceDetailPage,
@@ -44,7 +44,7 @@ import { BuildPipe } from './common/pipe/device.pipe';
   entryComponents: [
     MyApp,
     VideoPage,
-    MessagePage,
+    SettingsPage,
     DevicePage,
     TabsPage,
     DeviceDetailPage

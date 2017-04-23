@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { VideoPage } from '../video/video';
-import { MessagePage } from '../message/message';
+import { SettingsPage } from '../settings/settings';
 import { DevicePage } from '../device/device';
 
 @Component({
@@ -11,7 +11,7 @@ export class TabsPage {
 
   tab1Root = DevicePage;
   tab2Root = VideoPage;
-  tab3Root = MessagePage;
+  tab3Root = SettingsPage;
 
   constructor() {
 
