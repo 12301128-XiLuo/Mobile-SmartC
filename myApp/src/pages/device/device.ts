@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+// import { Subject } from 'rxjs/Subject';
+// import { Observable } from 'rxjs/Observable';
+// import 'rxjs/add/observable/of';
 
 //entity
 import { Device } from '../../app/common/entity/device.entity';
@@ -12,7 +12,7 @@ import { Classroom } from '../../app/common/entity/classroom.entity';
 import { DeviceService } from '../../app/common/service/device.service';
 import { BuildClassService } from '../../app/common/service/buildClass.service';
 
-//import { AgePipe } from '../../app/common/pipe/device.pipe';
+import { DeviceDetailPage } from './device-detail/deviceDetail';
 
 @Component({
   selector: 'page-device',
@@ -23,13 +23,10 @@ export class DevicePage {
 	buildings : Building[];
 	classrooms : Classroom[];
 	//教学楼初始化选中第一条
-	buildModel : string="逸夫楼";
+	buildModel : string;
 	class : number;
-  	//判断用户是否变更选择
-  	private preBuild : string = '';
-  	private preClass : string;
-
-  	private searchTerms = new Subject<string>();
+  	
+  	deviceDetailPage : any = DeviceDetailPage;
 
   	constructor(
   		public navCtrl: NavController,
@@ -53,20 +50,6 @@ export class DevicePage {
   	 */
   	getClassroomsByName(name): void {
   		this.buildClassService.getClassroomsByName(name).then(classrooms => this.classrooms = classrooms);
-  	}
-  	/**
-  	 * [updateBuilding 当教学楼更新时，更新教室号以及列表]
-  	 */
-  	updateBuilding(build): void {
-  		console.log(this.buildModel);
-  		// if( build!== this.preBuild){
-  		// 	this.getClassroomsByName(build);
-  		// 	this.devices = this.devices.filter(function(x){
-  		// 		return x.buildingNum == build;
-  		// 	});
-  		// 	console.log(this.devices);
-  		// 	this.preBuild = build;
-  		// }
   	}
 
   	ngOnInit(): void {

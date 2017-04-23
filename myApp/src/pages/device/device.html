@@ -8,7 +8,7 @@
   <ion-list>
     <ion-item>
     <ion-label>教学楼</ion-label>
-      <ion-select [(ngModel)]="buildModel" okText="确认" cancelText="取消" (ngModelChange)="updateBuilding($event)">
+      <ion-select [(ngModel)]="buildModel" okText="确认" cancelText="取消">
         <ion-option *ngFor="let building of buildings" value="{{building.buildingNum}}">
           {{building.buildingNum}}
         </ion-option>
@@ -16,18 +16,18 @@
         <ion-option value="siyuan">思源楼</ion-option> -->
       </ion-select>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>教室号</ion-label>
       <ion-select [(ngModel)]="class" okText="确认" cancelText="取消">
         <ion-option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
           {{classroom.classroomNum}}
         </ion-option>      
       </ion-select>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
 
   <ion-list>
-    <button ion-item *ngFor="let device of devices | AgePipe:buildModel" (click)="itemSelected(item)">
+    <button ion-item *ngFor="let device of devices | BuildPipe:buildModel" [navPush]="deviceDetailPage" [navParams]="device">
       {{ device.buildingNum }} {{ device.classroomNum }}
 
     </button>  

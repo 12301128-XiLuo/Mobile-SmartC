@@ -8,6 +8,8 @@ import { VideoPage } from '../pages/video/video';
 import { MessagePage } from '../pages/message/message';
 import { DevicePage } from '../pages/device/device';
 import { TabsPage } from '../pages/tabs/tabs';
+import { DeviceDetailPage } from '../pages/device/device-detail/deviceDetail';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +21,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import { DeviceService } from './common/service/device.service';
 import { BuildClassService } from './common/service/buildClass.service';
 //pipe
-import { AgePipe } from './common/pipe/device.pipe';
+import { BuildPipe } from './common/pipe/device.pipe';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { AgePipe } from './common/pipe/device.pipe';
     MessagePage,
     DevicePage,
     TabsPage,
-    AgePipe
+    DeviceDetailPage,
+    BuildPipe
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { AgePipe } from './common/pipe/device.pipe';
     VideoPage,
     MessagePage,
     DevicePage,
-    TabsPage
+    TabsPage,
+    DeviceDetailPage
   ],
   providers: [
     StatusBar,

@@ -3,16 +3,18 @@ import { Device } from '../entity/device.entity';
 
 // Tell Angular2 we're creating a Pipe with TypeScript decorators
 @Pipe({
-  name: 'AgePipe'
+  name: 'BuildPipe'
 })
-export class AgePipe implements PipeTransform{
+
+/**
+ * 根据选择的教学楼进行筛选教室列表
+ */
+export class BuildPipe implements PipeTransform{
 
   // Transform is the new "return function(value, args)" in Angular 1.x
   transform(allDevices:Device[], args:string) {
   	if(!allDevices) return [];
-
-    // ES6 array destructuring
-    console.log(allDevices+' '+args);
+  	if(!args) return allDevices;
     return allDevices.filter(device => device.buildingNum==args);
   }
 
