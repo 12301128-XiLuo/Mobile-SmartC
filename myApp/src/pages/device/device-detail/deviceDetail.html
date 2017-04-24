@@ -1,17 +1,25 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{device.buildingNum}} {{device.classroomNum}}</ion-title>
+    <ion-title>
+      {{device.buildingNum}} {{device.classroomNum}}
+      <ion-badge *ngIf="device.raspberryStreamStatus==0" color="danger">离线</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==1" color="secondary">空闲</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==2" color="danger">异常</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==3" color="primary">推流</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==4" color="primary">拉流</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==5" color="primary">广播</ion-badge>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="outer-content">
    <ion-list no-border>
 
-    <ion-list-header>
-      设备
+    <ion-list-header class="list-header">
+      设备管理
     </ion-list-header>
     <ion-item>
-      <ion-toggle [(ngModel)]="computer" (ionChange)="deviceManage($event)"></ion-toggle>
+      <ion-toggle [(ngModel)]="computer" (ngModelChange)="deviceManage($event,'computer')"></ion-toggle>
       <ion-label>
         电脑
       </ion-label>
@@ -19,7 +27,7 @@
     </ion-item>
     
     <ion-item>
-      <ion-toggle checked="false"></ion-toggle>
+      <ion-toggle [(ngModel)]="projector" (ngModelChange)="deviceManage($event,'projector')"></ion-toggle>
       <ion-label>
         投影仪
       </ion-label>
@@ -27,12 +35,30 @@
     </ion-item>
 
     <ion-item>
-      <ion-toggle checked="false"></ion-toggle>
+      <ion-toggle [(ngModel)]="camera"></ion-toggle>
       <ion-label>
-        摄像机
+        摄像头
       </ion-label>
       <ion-icon name='camera' item-left></ion-icon>
     </ion-item>
+    
+  </ion-list>
+
+  <ion-list *ngIf="camera">
+    <ion-list-header class="list-header">
+      摄像头
+    </ion-list-header>
+    <ion-item *ngFor="let camera of cameras">
+      <ion-toggle [ngModel]="camera.cameraStatus==1?1:0" (ngModelChange)="cameraManage($event,camera.cameraId)" ></ion-toggle>
+      <ion-label>{{camera.cameraAngle}}</ion-label>    
+    </ion-item>
+  </ion-list>
+
+  <ion-list no-border>
+
+    <ion-list-header class="list-header">
+      视频管理
+    </ion-list-header>
 
   </ion-list>
 

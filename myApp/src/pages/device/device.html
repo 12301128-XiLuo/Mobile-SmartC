@@ -1,11 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>设备管理</ion-title>
+    <ion-title>管理</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="outer-content">
   <ion-list>
+    <ion-list-header class="list-header">
+      选择
+    </ion-list-header>
+
     <ion-item>
     <ion-label>教学楼</ion-label>
       <ion-select [(ngModel)]="buildModel" okText="确认" cancelText="取消">
@@ -27,6 +31,10 @@
   </ion-list>
 
   <ion-list>
+    <ion-list-header class="list-header">
+      教室列表
+    </ion-list-header>
+
     <button ion-item *ngFor="let device of devices | BuildPipe:buildModel" [navPush]="deviceDetailPage" [navParams]="device">
       {{ device.buildingNum }} {{ device.classroomNum }}
       <ion-badge *ngIf="device.raspberryStreamStatus==0" item-right color="danger">离线</ion-badge>

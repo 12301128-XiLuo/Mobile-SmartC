@@ -1,3 +1,5 @@
+import { Camera } from './camera.entity';
+
 export class  Device{
 	id : number;
     buildingNum : string;
@@ -8,10 +10,10 @@ export class  Device{
     raspberryStatus : number;
     raspberryCode : string;
     raspberryStreamStatus : number;
-    cameraTypeId : number;
     cameraStatus : number;
     computerTypeId : number;
     computerStatus : number;
     projectorTypeId : number;
     projectorStatus : number;
+    cameraList : Camera[];
 }

@@ -29,4 +29,45 @@ export class DeviceService {
     	console.error('An error occurred', error); // for demo purposes only
     	return Promise.reject(error.message || error);
   	}
+
+    /**
+     * [operateDevice 操作设备状态]
+     * @param {[type]} id      [教室设备列表id]
+     * @param {[type]} device  [设备类型]
+     * @param {[type]} operate [操作类型 open close]
+     */
+    operateDevice(id,device,operate): void{
+      let url = '/ajax_edit_device_status';
+      let data = {
+        "did":id,
+        "device":device,
+        "operation":operate
+      }
+      console.log(data);
+      this.http
+        .post(url, JSON.stringify(data), {headers: this.headers})
+        .toPromise()
+        .then(res => res.json().data)
+        .catch(this.handleError);
+    }
+
+    /**
+     * [operateCamera 操作摄像机状态]
+     * @param {[type]} id      [摄像机id]
+     * @param {[type]} operate [操作类型 open close]
+     */
+    operateCamera(id,operate): void{
+      let url = '/ajax_edit_camera_status';
+      let data = {
+        "cid":id,
+        "operation":operate
+      }
+      console.log(data);
+      this.http
+        .post(url, JSON.stringify(data), {headers: this.headers})
+        .toPromise()
+        .then(res => res.json().data)
+        .catch(this.handleError);
+    }
+
 }
