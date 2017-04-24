@@ -17,11 +17,16 @@ export class DeviceDetailPage {
 	computer : boolean = false;
 	projector : boolean = false;
 	camera : boolean = false;
-	firstJudge : boolean = false;
+	raspberry : number;
+	disableJudge : boolean = false;
 
 	constructor(private deviceService: DeviceService,public navCtrl: NavController,public navParams: NavParams) {
 	    this.device = navParams.data;
 	    this.cameras = this.device.cameraList;
+	    this.raspberry = this.device.raspberryStreamStatus;
+	    if(this.raspberry==0||this.raspberry==2){
+	    	this.disableJudge = true;
+	    }
 	    console.log(this.device);
 	    this.initStatus();
 	 }
