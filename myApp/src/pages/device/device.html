@@ -29,7 +29,12 @@
   <ion-list>
     <button ion-item *ngFor="let device of devices | BuildPipe:buildModel" [navPush]="deviceDetailPage" [navParams]="device">
       {{ device.buildingNum }} {{ device.classroomNum }}
-
+      <ion-badge *ngIf="device.raspberryStreamStatus==0" item-right color="danger">离线</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==1" item-right color="secondary">空闲</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==2" item-right color="danger">异常</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==3" item-right color="primary">推流</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==4" item-right color="primary">拉流</ion-badge>
+      <ion-badge *ngIf="device.raspberryStreamStatus==5" item-right color="primary">广播</ion-badge>
     </button>  
   </ion-list>     
  </ion-content>

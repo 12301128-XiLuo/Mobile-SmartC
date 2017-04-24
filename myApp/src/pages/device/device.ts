@@ -24,8 +24,7 @@ export class DevicePage {
 	classrooms : Classroom[];
 	//教学楼初始化选中第一条
 	buildModel : string;
-	class : number;
-  	
+	classStatus : string;
   	deviceDetailPage : any = DeviceDetailPage;
 
   	constructor(
@@ -44,12 +43,6 @@ export class DevicePage {
   	 */
   	getBuildings(): void {
   		this.buildClassService.getBuildings().then(buildings => this.buildings = buildings);
-  	}
-  	/**
-  	 * [getClassroomsByName 根据教学楼获得教室列表]
-  	 */
-  	getClassroomsByName(name): void {
-  		this.buildClassService.getClassroomsByName(name).then(classrooms => this.classrooms = classrooms);
   	}
 
   	ngOnInit(): void {

@@ -23,6 +23,10 @@ export class DeviceDetailPage {
 	 	this.device.computerStatus==0?this.computer=false: this.computer=true;	
 	 } 
 
+	 deviceManage(): void{
+
+	 }
+	 
 	 ngOnInit(): void {
 	    console.log(this.computer);
 	}
