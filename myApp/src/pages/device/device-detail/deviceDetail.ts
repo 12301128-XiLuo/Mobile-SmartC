@@ -111,6 +111,9 @@ export class DeviceDetailPage {
 	 openModal() {
 
 	    let modal = this.modalCtrl.create(BuildClassModalPage);
+	    modal.onDidDismiss(data => {
+	     console.log(data);
+	   });
 	    modal.present();
 	  }
 	 ngOnInit(): void {
