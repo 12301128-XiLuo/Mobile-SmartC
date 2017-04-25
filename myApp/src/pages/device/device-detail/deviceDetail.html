@@ -73,22 +73,22 @@
     </ion-segment>
  -->    
     <ion-item>
-      <ion-toggle [(ngModel)]="push" (ngModelChange)="videoManage($event,'push')" [disabled]="disableJudge"></ion-toggle>
+      <ion-toggle [(ngModel)]="push" (ngModelChange)="videoManage($event,'push')" [disabled]="disableJudge||disablePush"></ion-toggle>
       <ion-label>
         推流
       </ion-label>
     </ion-item>
     
     <ion-item>
-      <ion-toggle [(ngModel)]="pull" (ngModelChange)="videoManage($event,'pull')" [disabled]="disableJudge"></ion-toggle>
+      <ion-toggle [(ngModel)]="pull" (ngModelChange)="videoManage($event,'pull')" [disabled]="disableJudge||disablePull"></ion-toggle>
       <ion-label>
         拉流
       </ion-label>
     </ion-item>
     <ion-item>
-      <ion-toggle [(ngModel)]="broadcast" (ngModelChange)="videoManage($event,'broadcast')" [disabled]="disableJudge"></ion-toggle>
+      <ion-toggle [(ngModel)]="broadcast" (ngModelChange)="videoManage($event,'broadcast')" [disabled]="disableJudge||disableBroadcast"></ion-toggle>
       <ion-label>
-        拉流
+        广播
       </ion-label>
     </ion-item>
 

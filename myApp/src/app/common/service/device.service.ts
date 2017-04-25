@@ -43,12 +43,7 @@ export class DeviceService {
         "device":device,
         "operation":operate
       }
-      console.log(data);
-      this.http
-        .post(url, JSON.stringify(data), {headers: this.headers})
-        .toPromise()
-        .then(res => res.json().data)
-        .catch(this.handleError);
+      this.commonOperatFunc(url,data);
     }
 
     /**
@@ -62,20 +57,45 @@ export class DeviceService {
         "cid":id,
         "operation":operate
       }
-      console.log(data);
-      this.http
-        .post(url, JSON.stringify(data), {headers: this.headers})
-        .toPromise()
-        .then(res => res.json().data)
-        .catch(this.handleError);
+      this.commonOperatFunc(url,data);
     }
 
+    /**
+     * [operateStream 操作视频推拉流]
+     * @param {[type]} id      [教室设备列表id]
+     * @param {[type]} operate [操作类型 start_push|broadcast stop_push|pull|broadcast]
+     */
     operateStream(id,operate): void{
       let url = '/ajax_edit_stream_status';
       let data = {
         "did":id,
         "operation":operate
       }
+      this.commonOperatFunc(url,data);
+    }
+
+    /**
+     * [startPullOperate description]
+     * @param {[type]} buildingNum  [教学楼]
+     * @param {[type]} classroomNum [教室]
+     * @param {[type]} id           [教室设备列表id]
+     */
+    startPullOperate(buildingNum,classroomNum,id): void{
+      let url = '/ajax_pull_stream_status';
+      let data = {
+        "buildingNum":buildingNum,
+        "classroomNum":classroomNum,
+        "did":id
+      }      
+      this.commonOperatFunc(url,data);
+    }
+
+    /**
+     * [commonOperatFunc 公共方法]
+     * @param {[type]} url  [访问地址]
+     * @param {[type]} data [传输数据]
+     */
+    commonOperatFunc(url,data): void{
       console.log(data);
       this.http
         .post(url, JSON.stringify(data), {headers: this.headers})

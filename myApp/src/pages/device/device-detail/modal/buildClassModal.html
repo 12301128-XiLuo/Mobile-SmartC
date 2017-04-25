@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      选择教室
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">取消</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="outer-content">
+  <ion-list>
+      <ion-item>
+      <ion-label>教学楼</ion-label>
+        <ion-select [(ngModel)]="buildModel" okText="确认" cancelText="取消">
+          <ion-option *ngFor="let building of buildings" value="{{building.buildingNum}}">
+            {{building.buildingNum}}
+          </ion-option>
+          <!-- <ion-option value="yifu" selected="true">逸夫楼</ion-option>
+          <ion-option value="siyuan">思源楼</ion-option> -->
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>教室号</ion-label>
+        <ion-select [(ngModel)]="class" okText="确认" cancelText="取消">
+          <!-- <ion-option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
+            {{classroom.classroomNum}}
+          </ion-option> -->      
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button full>确 认</button>
+</ion-content>
