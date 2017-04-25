@@ -59,18 +59,39 @@
     <ion-list-header class="list-header">
       视频管理
     </ion-list-header>
-    <ion-segment [(ngModel)]="pet">
-      <ion-segment-button value="pull">
-        拉流
+<!--     <ion-segment [(ngModel)]="video" (ngModelChange)="videoManage()" [disabled]="disableJudge">
+      <ion-segment-button value="push" [disabled]="disablePush">
+        {{push}}
       </ion-segment-button>
-      <ion-segment-button value="push">
-        推流
+      <ion-segment-button value="pull" [disabled]="disablePull">
+        {{pull}}
       </ion-segment-button>
-      <ion-segment-button value="broadcast">
-        广播
+      <ion-segment-button value="broadcast" [disabled]="disableBroadcast">
+        {{broadcast}}
       </ion-segment-button>
 
     </ion-segment>
+ -->    
+    <ion-item>
+      <ion-toggle [(ngModel)]="push" (ngModelChange)="videoManage($event,'push')" [disabled]="disableJudge"></ion-toggle>
+      <ion-label>
+        推流
+      </ion-label>
+    </ion-item>
+    
+    <ion-item>
+      <ion-toggle [(ngModel)]="pull" (ngModelChange)="videoManage($event,'pull')" [disabled]="disableJudge"></ion-toggle>
+      <ion-label>
+        拉流
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-toggle [(ngModel)]="broadcast" (ngModelChange)="videoManage($event,'broadcast')" [disabled]="disableJudge"></ion-toggle>
+      <ion-label>
+        拉流
+      </ion-label>
+    </ion-item>
+
   </ion-list>
 
 </ion-content>

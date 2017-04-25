@@ -70,4 +70,17 @@ export class DeviceService {
         .catch(this.handleError);
     }
 
+    operateStream(id,operate): void{
+      let url = '/ajax_edit_stream_status';
+      let data = {
+        "did":id,
+        "operation":operate
+      }
+      console.log(data);
+      this.http
+        .post(url, JSON.stringify(data), {headers: this.headers})
+        .toPromise()
+        .then(res => res.json().data)
+        .catch(this.handleError);
+    }
 }
