@@ -10,6 +10,7 @@ import { DevicePage } from '../pages/device/device';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DeviceDetailPage } from '../pages/device/device-detail/deviceDetail';
 import { BuildClassModalPage } from '../pages/device/device-detail/modal/buildClassModal';
+import { LoginPage } from '../pages/login/login';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -34,6 +35,7 @@ import { BuildPipe } from './common/pipe/device.pipe';
     TabsPage,
     DeviceDetailPage,
     BuildClassModalPage,
+    LoginPage,
     BuildPipe
   ],
   imports: [
@@ -54,7 +56,8 @@ import { BuildPipe } from './common/pipe/device.pipe';
     DevicePage,
     TabsPage,
     DeviceDetailPage,
-    BuildClassModalPage
+    BuildClassModalPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
