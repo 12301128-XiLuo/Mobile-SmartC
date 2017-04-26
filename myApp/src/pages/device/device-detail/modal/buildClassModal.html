@@ -4,7 +4,7 @@
       选择教室
     </ion-title>
     <ion-buttons start>
-      <button ion-button>
+      <button ion-button (click)="dismiss()">
         <span ion-text color="primary" showWhen="ios">取消</span>
         <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
       </button>
@@ -15,7 +15,7 @@
   <ion-list>
       <ion-item>
       <ion-label>教学楼</ion-label>
-        <ion-select [(ngModel)]="buildModel" okText="确认" cancelText="取消">
+        <ion-select [(ngModel)]="build" (ngModelChange)="selectPushBuilding()" okText="确认" cancelText="取消">
           <ion-option *ngFor="let building of buildings" value="{{building.buildingNum}}">
             {{building.buildingNum}}
           </ion-option>
@@ -26,12 +26,12 @@
       <ion-item>
         <ion-label>教室号</ion-label>
         <ion-select [(ngModel)]="class" okText="确认" cancelText="取消">
-          <ion-option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
+          <ion-option *ngFor="let classroom of classrooms" value="{{classroom.classroomNum}}">
             {{classroom.classroomNum}}
           </ion-option>      
         </ion-select>
       </ion-item>
     </ion-list>
 
-    <button ion-button full (click)="dismiss()">确 认</button>
+    <button ion-button full (click)="confirm()">确 认</button>
 </ion-content>

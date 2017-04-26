@@ -35,8 +35,12 @@ export class BuildClassService {
 	 * @return {Promise<Classroom[]>}      [教室列表]
 	 */
 	getClassroomsByName(name: string): Promise<Classroom[]>{
-		const url = `${this.classroomUrl}`;
-    return this.http.get(url)
+		let url = this.classroomUrl;
+    let data = {"name":name}
+    console.log("buildClassService:"+name);
+    return this.http      
+      //.post(url, JSON.stringify(data), {headers: this.headers})
+      .get(url)
       .toPromise()
       .then(response => response.json().data.data.classroomList as Classroom[])
       .catch(this.handleError);

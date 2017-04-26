@@ -91,10 +91,13 @@ export class DeviceDetailPage {
 	  */
 	 videoManage(event,type): void{
 	 	let operate = event?'start'.concat('_'+type):'stop'.concat('_'+type);
-	 	this.videoStatusJudge();
+	 	
 	 	//拉流需要选择正在推流的教室
 	 	if((type == 'pull') && this.pull){
 	 		this.openModal();
+	 	}else{
+	 		this.videoStatusJudge();
+	 		this.deviceService.operateStream(this.device.id,operate);
 	 	}
 	 	console.log(operate);
 
@@ -109,15 +112,20 @@ export class DeviceDetailPage {
 	 }
 
 	 openModal() {
-
-	    let modal = this.modalCtrl.create(BuildClassModalPage);
+		let modal = this.modalCtrl.create(BuildClassModalPage);
 	    modal.onDidDismiss(data => {
-	     console.log(data);
-	   });
-	    modal.present();
+	    	if(typeof(data)!="undefined"){
+	    		this.deviceService.startPullOperate(data.buildingNum,data.classroomNum,this.device.id);
+	    		this.videoStatusJudge();
+	    	}else{
+	    		this.pull = false;
+	    	}
+	   	});
+	   	modal.present();
 	  }
+
 	 ngOnInit(): void {
 	    
-	}
+	 }
 
 }

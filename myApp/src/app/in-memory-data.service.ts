@@ -416,8 +416,6 @@ export class InMemoryDataService implements InMemoryDbService {
 
         ]}
     }
-    let test={        "msg": "调用成功",
-        "code": "0000"}
-    return {devices,buildings,classrooms,test};
+        return {devices,buildings,classrooms};
   }
 }

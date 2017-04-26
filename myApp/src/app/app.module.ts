@@ -40,7 +40,11 @@ import { BuildPipe } from './common/pipe/device.pipe';
     BrowserModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{
+      backButtonText: '返回',
+      modalEnter: 'modal-slide-in',
+      modalLeave: 'modal-slide-out'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
