@@ -22,9 +22,10 @@ export class LoginPage {
 	constructor(
 		private formBuilder: FormBuilder,
 		public navCtrl: NavController,
-		public toastCtrl: ToastController,
+		public toastCtrl: ToastController,		
 		private userSevice: UserService,
-		private storageService: StorageService) { } 
+		private storageService: StorageService) {
+	} 
 
 	loginForm = this.formBuilder.group({
 	    'LoginName': ['', [Validators.required, Validators.minLength(2), usernameValidator]],// 第一个参数是默认值
@@ -32,7 +33,6 @@ export class LoginPage {
 	 });
 	login(user,event): void{
 		this.userSevice.login(user.LoginName,user.LoginPwd).then(data => {
-			console.log(data);
 			if(data.msg == "0"){
 				this.storageService.write('user',data.user);
 				// let ss = this.storageService.read<User>('user');

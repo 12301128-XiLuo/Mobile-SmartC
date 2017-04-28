@@ -1,17 +1,44 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
       设置
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding class="outer-content">
+  <ion-list-header class="list-header">
+      个人信息
+  </ion-list-header>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
+      <ion-icon name="person" item-left></ion-icon>
+      {{user.username}}
+      <ion-badge color="primary" item-right>{{user.rname}}</ion-badge>
     </ion-item>
   </ion-list>
+  <ion-list-header class="list-header">
+      消息
+  </ion-list-header>
+  <ion-list>
+    <ion-item>
+      <ion-toggle [(ngModel)]="messageModel"></ion-toggle>
+      <ion-label>
+        消息列表
+      </ion-label>    
+    </ion-item>      
+    <div *ngIf="messageModel">
+      <ion-item *ngFor="let message of messages">
+        <ion-label>{{message.buildClass}}  {{message.message}}</ion-label>
+
+        <ion-badge item-right *ngIf="message.tab=='video'" color="warning">视 &nbsp;&nbsp;频</ion-badge>
+        <ion-badge item-right *ngIf="message.tab=='device'" color="secondary">设 &nbsp;&nbsp;备</ion-badge>
+        <ion-badge item-right *ngIf="message.tab=='all'" color="danger">树莓派</ion-badge>
+           
+      </ion-item>
+    </div>
+  </ion-list>
+  <div padding>
+    <button ion-button color="primary" block (click)="logout()">退出当前账户</button>
+  </div>
 </ion-content>

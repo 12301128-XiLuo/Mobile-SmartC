@@ -24,6 +24,7 @@ import { DeviceService } from './common/service/device.service';
 import { BuildClassService } from './common/service/buildClass.service';
 import { UserService } from './common/service/user.service';
 import { StorageService } from './common/service/storage.service';
+import { MessageService } from './common/service/message.service';
 //pipe
 import { BuildPipe } from './common/pipe/device.pipe';
 //import { usernameValidator } from './common/providers/validator';
@@ -69,7 +70,8 @@ import { BuildPipe } from './common/pipe/device.pipe';
     DeviceService,
     BuildClassService,
     UserService,
-    StorageService
+    StorageService,
+    MessageService
   ]
 })
 export class AppModule {}

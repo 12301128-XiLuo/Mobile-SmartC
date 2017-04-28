@@ -421,7 +421,7 @@ export class InMemoryDataService implements InMemoryDbService {
         "msg": "调用成功",
         "code": "0000",
         "data": {
-            "msg" : 1,
+            "msg" : 0,
             "user" : {
                 "id" : 1,
                 "username" : "xixi",
@@ -430,7 +430,43 @@ export class InMemoryDataService implements InMemoryDbService {
             }
         }
     }
-        return {user,devices,buildings,classrooms};
+
+    let messages = {
+        "msg": "调用成功",
+        "code": "0000",
+        "data": {
+            "messageListCenter" : [
+                {
+                    "judge" : "success",
+                    "nowTime" : "2017-04-28 16:22:06",
+                    "message" : "开始推流",
+                    "ownId" : "1111",
+                    "buildClass" : "逸夫楼101",
+                    "tab" : "video",
+                    "userId" : 1
+                },
+                {
+                    "judge" : "fail",
+                    "nowTime" : "2017-04-28 16:22:06",
+                    "message" : "开始推流",
+                    "ownId" : "1111",
+                    "buildClass" : "逸夫楼102",
+                    "tab" : "device",
+                    "userId" : 1
+                },
+                {
+                    "judge" : "timeout",
+                    "nowTime" : "2017-04-28 16:22:06",
+                    "message" : "开始推流",
+                    "ownId" : "1111",
+                    "buildClass" : "逸夫楼103",
+                    "tab" : "all",
+                    "userId" : 1
+                }
+        ]
+        }
+    }
+        return {user,devices,buildings,classrooms,messages};
     }
   }
 
