@@ -1,17 +1,25 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>登录</ion-title>
+  </ion-navbar>
+</ion-header>
 <ion-content padding>
     <form [formGroup]="loginForm" >
         <ion-item>
-            <ion-label>Username</ion-label>
-            <ion-input type="text" formControlName="LoginID"></ion-input>
+          <ion-label floating>用户名</ion-label>
+          <ion-input type="text" formControlName="LoginName"></ion-input>
         </ion-item>
-        <p *ngIf="!loginForm.controls.LoginID.valid && loginForm.controls.LoginID.touched" color="danger">LoginID must is email.</p>
-        <!-- <p *ngIf="loginForm.controls.LoginID.valid && loginForm.controls.LoginID.touched" secondary> LoginID is good</p>-->
 
         <ion-item>
-            <ion-label>Password</ion-label>
-            <ion-input type="password" formControlName="LoginPwd"></ion-input>
+          <ion-label floating>密码</ion-label>
+          <ion-input type="password" formControlName="LoginPwd"></ion-input>
         </ion-item>
-        <button ion-button full (click)="login(loginForm.value, $event)" [disabled]="!loginForm.valid">Dark</button>
-        <button ion-button full (click)="signup()">Create Account</button>
-    </form>
+        
+        <div padding>
+            <button ion-button color="primary" block (click)="login(loginForm.value, $event)" [disabled]="!loginForm.valid">登录</button>
+        </div>
+        <div padding *ngIf="!loginForm.controls.LoginName.valid && loginForm.controls.LoginName.touched">
+            <ion-badge color="danger">用户名输入不合法!</ion-badge>
+        </div>
+  </form>
 </ion-content>

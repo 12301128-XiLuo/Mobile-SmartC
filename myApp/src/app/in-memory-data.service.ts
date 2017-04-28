@@ -416,6 +416,21 @@ export class InMemoryDataService implements InMemoryDbService {
 
         ]}
     }
-        return {devices,buildings,classrooms};
+
+    let user = {
+        "msg": "调用成功",
+        "code": "0000",
+        "data": {
+            "msg" : 0,
+            "user" : {
+                "id" : 1,
+                "username" : "xixi",
+                "password" : "haha",
+                "rname" : "超级管理员"
+            }
+        }
+    }
+        return {user,devices,buildings,classrooms};
+    }
   }
-}
+

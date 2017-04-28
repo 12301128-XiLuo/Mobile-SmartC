@@ -22,8 +22,11 @@ import { InMemoryDataService }  from './in-memory-data.service';
 //service
 import { DeviceService } from './common/service/device.service';
 import { BuildClassService } from './common/service/buildClass.service';
+import { UserService } from './common/service/user.service';
+import { StorageService } from './common/service/storage.service';
 //pipe
 import { BuildPipe } from './common/pipe/device.pipe';
+//import { usernameValidator } from './common/providers/validator';
 
 
 @NgModule({
@@ -64,7 +67,9 @@ import { BuildPipe } from './common/pipe/device.pipe';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DeviceService,
-    BuildClassService
+    BuildClassService,
+    UserService,
+    StorageService
   ]
 })
 export class AppModule {}
