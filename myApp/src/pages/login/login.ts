@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,ToastController } from 'ionic-angular';
 import { FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { TabsPage } from '../tabs/tabs';
@@ -22,7 +22,9 @@ export class LoginPage {
 	constructor(
 		private formBuilder: FormBuilder,
 		public navCtrl: NavController,
-		private userSevice: UserService) { } 
+		public toastCtrl: ToastController,
+		private userSevice: UserService,
+		private storageService: StorageService) { } 
 
 	loginForm = this.formBuilder.group({
 	    'LoginName': ['', [Validators.required, Validators.minLength(2), usernameValidator]],// 第一个参数是默认值
@@ -32,9 +34,26 @@ export class LoginPage {
 		this.userSevice.login(user.LoginName,user.LoginPwd).then(data => {
 			console.log(data);
 			if(data.msg == "0"){
-				this.navCtrl.push(TabsPage,{ user: data.user });
+				this.storageService.write('user',data.user);
+				// let ss = this.storageService.read<User>('user');
+    			//console.log(ss);
+        		this.navCtrl.push(TabsPage);
+        		
+			}else{
+				this.loginToast();
 			}
 		});
+	}
+
+	loginToast(): void{
+		let toast = this.toastCtrl.create({
+          message: '用户名或密码错误.',
+          duration: 3000,
+          position: 'bottom',
+          showCloseButton: true,
+          closeButtonText: '关闭'
+        });
+        toast.present();
 	}
 	ngOnInit(): void {
   }

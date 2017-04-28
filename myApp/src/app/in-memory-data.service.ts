@@ -421,7 +421,7 @@ export class InMemoryDataService implements InMemoryDbService {
         "msg": "调用成功",
         "code": "0000",
         "data": {
-            "msg" : 0,
+            "msg" : 1,
             "user" : {
                 "id" : 1,
                 "username" : "xixi",
