@@ -29,19 +29,22 @@ export class InMemoryDataService implements InMemoryDbService {
                         "cameraId" : 0,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 2,
-                        "cameraAngle" : "正面"
+                        "cameraAngle" : "上",
+                        "cameraName" : "正面"
                     },
                     {
                         "cameraId" : 1,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 0,
-                        "cameraAngle" : "侧面"
+                        "cameraAngle" : "下",
+                        "cameraName" : "侧面"
                     },
                     {
                         "cameraId" : 2,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 1,
-                        "cameraAngle" : "全景"
+                        "cameraAngle" : "左",
+                        "cameraName" : "全景"
                     }
                 ]
               },
@@ -64,22 +67,25 @@ export class InMemoryDataService implements InMemoryDbService {
                 "cameraStatus" : 1,
                 "cameraList":[
                     {
-                        "cameraId" : 3,
+                        "cameraId" : 0,
                         "cameraTypeId" : 0,
-                        "cameraStatus" : 1,
-                        "cameraAngle" : "正面"
+                        "cameraStatus" : 2,
+                        "cameraAngle" : "上",
+                        "cameraName" : "正面"
                     },
                     {
-                        "cameraId" : 4,
+                        "cameraId" : 1,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 0,
-                        "cameraAngle" : "侧面"
+                        "cameraAngle" : "下",
+                        "cameraName" : "侧面"
                     },
                     {
-                        "cameraId" : 5,
+                        "cameraId" : 2,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 1,
-                        "cameraAngle" :  "全景"
+                        "cameraAngle" : "左",
+                        "cameraName" : "全景"
                     }
                 ]
               },
@@ -101,24 +107,27 @@ export class InMemoryDataService implements InMemoryDbService {
                     "projectorStatus" : 1,
                     "cameraStatus" : 1,
                     "cameraList":[
-                        {
-                            "cameraId" : 6,
-                            "cameraTypeId" : 0,
-                            "cameraStatus" : 1,
-                            "cameraAngle" : "正面"
-                        },
-                        {
-                            "cameraId" : 7,
-                            "cameraTypeId" : 0,
-                            "cameraStatus" : 0,
-                            "cameraAngle" : "侧面"
-                        },
-                        {
-                            "cameraId" : 8,
-                            "cameraTypeId" : 0,
-                            "cameraStatus" : 1,
-                            "cameraAngle" :  "全景"
-                        }
+                    {
+                        "cameraId" : 0,
+                        "cameraTypeId" : 0,
+                        "cameraStatus" : 2,
+                        "cameraAngle" : "上",
+                        "cameraName" : "正面"
+                    },
+                    {
+                        "cameraId" : 1,
+                        "cameraTypeId" : 0,
+                        "cameraStatus" : 0,
+                        "cameraAngle" : "下",
+                        "cameraName" : "侧面"
+                    },
+                    {
+                        "cameraId" : 2,
+                        "cameraTypeId" : 0,
+                        "cameraStatus" : 1,
+                        "cameraAngle" : "左",
+                        "cameraName" : "全景"
+                    }
                     ]
                 },
                 {
@@ -140,22 +149,25 @@ export class InMemoryDataService implements InMemoryDbService {
                     "cameraStatus" : 1,
                     "cameraList":[
                     {
-                        "cameraId" : 9,
+                        "cameraId" : 0,
                         "cameraTypeId" : 0,
-                        "cameraStatus" : 1,
-                        "cameraAngle" : "正面"
+                        "cameraStatus" : 2,
+                        "cameraAngle" : "上",
+                        "cameraName" : "正面"
                     },
                     {
-                        "cameraId" : 10,
+                        "cameraId" : 1,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 0,
-                        "cameraAngle" : "侧面"
+                        "cameraAngle" : "下",
+                        "cameraName" : "侧面"
                     },
                     {
-                        "cameraId" : 11,
+                        "cameraId" : 2,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 1,
-                        "cameraAngle" :  "全景"
+                        "cameraAngle" : "左",
+                        "cameraName" : "全景"
                     }
                 ]
                 },
@@ -177,23 +189,26 @@ export class InMemoryDataService implements InMemoryDbService {
                     "projectorTypeId" : 0,
                     "projectorStatus" : 1,
                     "cameraList":[
-                    {
-                        "cameraId" : 12,
+                                        {
+                        "cameraId" : 0,
                         "cameraTypeId" : 0,
-                        "cameraStatus" : 1,
-                        "cameraAngle" : "正面"
+                        "cameraStatus" : 2,
+                        "cameraAngle" : "上",
+                        "cameraName" : "正面"
                     },
                     {
-                        "cameraId" : 13,
+                        "cameraId" : 1,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 0,
-                        "cameraAngle" : "侧面"
+                        "cameraAngle" : "下",
+                        "cameraName" : "侧面"
                     },
                     {
-                        "cameraId" : 14,
+                        "cameraId" : 2,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 1,
-                        "cameraAngle" :  "全景"
+                        "cameraAngle" : "左",
+                        "cameraName" : "全景"
                     }
                 ]
                 },
@@ -215,23 +230,26 @@ export class InMemoryDataService implements InMemoryDbService {
                     "projectorStatus" : 1,
                     "cameraStatus" : 1,
                     "cameraList":[
-                    {
-                        "cameraId" : 15,
+                                        {
+                        "cameraId" : 0,
                         "cameraTypeId" : 0,
-                        "cameraStatus" : 1,
-                        "cameraAngle" : "正面"
+                        "cameraStatus" : 2,
+                        "cameraAngle" : "上",
+                        "cameraName" : "正面"
                     },
                     {
-                        "cameraId" : 16,
+                        "cameraId" : 1,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 0,
-                        "cameraAngle" : "侧面"
+                        "cameraAngle" : "下",
+                        "cameraName" : "侧面"
                     },
                     {
-                        "cameraId" : 17,
+                        "cameraId" : 2,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 1,
-                        "cameraAngle" : "全景"
+                        "cameraAngle" : "左",
+                        "cameraName" : "全景"
                     }
                 ]
                 },
@@ -254,22 +272,25 @@ export class InMemoryDataService implements InMemoryDbService {
                     "cameraStatus" : 1,
                     "cameraList":[
                     {
-                        "cameraId" : 18,
+                        "cameraId" : 0,
                         "cameraTypeId" : 0,
-                        "cameraStatus" : 1,
-                        "cameraAngle" : "正面"
+                        "cameraStatus" : 2,
+                        "cameraAngle" : "上",
+                        "cameraName" : "正面"
                     },
                     {
-                        "cameraId" : 19,
+                        "cameraId" : 1,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 0,
-                        "cameraAngle" : "侧面"
+                        "cameraAngle" : "下",
+                        "cameraName" : "侧面"
                     },
                     {
-                        "cameraId" : 20,
+                        "cameraId" : 2,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 1,
-                        "cameraAngle" :  "全景"
+                        "cameraAngle" : "左",
+                        "cameraName" : "全景"
                     }
                 ]
                 },
@@ -292,22 +313,25 @@ export class InMemoryDataService implements InMemoryDbService {
                     "cameraStatus" : 1,
                     "cameraList":[
                     {
-                        "cameraId" : 21,
+                        "cameraId" : 0,
                         "cameraTypeId" : 0,
-                        "cameraStatus" : 1,
-                        "cameraAngle" : "正面"
+                        "cameraStatus" : 2,
+                        "cameraAngle" : "上",
+                        "cameraName" : "正面"
                     },
                     {
-                        "cameraId" : 22,
+                        "cameraId" : 1,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 0,
-                        "cameraAngle" : "侧面"
+                        "cameraAngle" : "下",
+                        "cameraName" : "侧面"
                     },
                     {
-                        "cameraId" : 23,
+                        "cameraId" : 2,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 1,
-                        "cameraAngle" :  "全景"
+                        "cameraAngle" : "左",
+                        "cameraName" : "全景"
                     }
                 ]
                 },
@@ -330,22 +354,25 @@ export class InMemoryDataService implements InMemoryDbService {
                     "cameraStatus" : 0,
                     "cameraList":[
                     {
-                        "cameraId" : 24,
+                        "cameraId" : 0,
                         "cameraTypeId" : 0,
-                        "cameraStatus" : 0,
-                        "cameraAngle" : "正面"
+                        "cameraStatus" : 2,
+                        "cameraAngle" : "上",
+                        "cameraName" : "正面"
                     },
                     {
-                        "cameraId" : 25,
+                        "cameraId" : 1,
                         "cameraTypeId" : 0,
                         "cameraStatus" : 0,
-                        "cameraAngle" : "侧面"
+                        "cameraAngle" : "下",
+                        "cameraName" : "侧面"
                     },
                     {
-                        "cameraId" : 26,
+                        "cameraId" : 2,
                         "cameraTypeId" : 0,
-                        "cameraStatus" : 0,
-                        "cameraAngle" :  "全景"
+                        "cameraStatus" : 1,
+                        "cameraAngle" : "左",
+                        "cameraName" : "全景"
                     }
                 ]
                 }

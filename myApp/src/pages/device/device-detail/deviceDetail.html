@@ -50,8 +50,9 @@
     </ion-list-header>
     <ion-item *ngFor="let camera of cameras">
       <ion-toggle [ngModel]="camera.cameraStatus==1?1:0" (ngModelChange)="cameraManage($event,camera.cameraId)" [disabled]="disableJudge"></ion-toggle>
-      <ion-label>{{camera.cameraAngle}}</ion-label>    
+      <ion-label>{{camera.cameraName}}</ion-label>  
     </ion-item>
+     
   </ion-list>
 
   <ion-list no-border no-lines>
@@ -59,24 +60,13 @@
     <ion-list-header class="list-header">
       视频管理
     </ion-list-header>
-<!--     <ion-segment [(ngModel)]="video" (ngModelChange)="videoManage()" [disabled]="disableJudge">
-      <ion-segment-button value="push" [disabled]="disablePush">
-        {{push}}
-      </ion-segment-button>
-      <ion-segment-button value="pull" [disabled]="disablePull">
-        {{pull}}
-      </ion-segment-button>
-      <ion-segment-button value="broadcast" [disabled]="disableBroadcast">
-        {{broadcast}}
-      </ion-segment-button>
 
-    </ion-segment>
- -->    
     <ion-item>
       <ion-toggle [(ngModel)]="push" (ngModelChange)="videoManage($event,'push')" [disabled]="disableJudge||disablePush"></ion-toggle>
       <ion-label>
         推流
       </ion-label>
+      <button ion-button item-left color="primary" (click)="openPushModal()" [disabled]="disableJudge||disablePush">播放视频</button>
     </ion-item>
     
     <ion-item>

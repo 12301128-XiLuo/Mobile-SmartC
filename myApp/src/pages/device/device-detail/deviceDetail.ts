@@ -7,6 +7,7 @@ import { Camera} from '../../../app/common/entity/camera.entity';
 import { DeviceService } from '../../../app/common/service/device.service';
 
 import { BuildClassModalPage } from './modal/buildClassModal';
+import { PushModal } from './modal/pushModal';
 
 @Component({
 	selector: 'page-device-detail',
@@ -94,7 +95,7 @@ export class DeviceDetailPage {
 	 	
 	 	//拉流需要选择正在推流的教室
 	 	if((type == 'pull') && this.pull){
-	 		this.openModal();
+	 		this.openBuildClassModal();
 	 	}else{
 	 		this.videoStatusJudge();
 	 		this.deviceService.operateStream(this.device.id,operate);
@@ -111,7 +112,7 @@ export class DeviceDetailPage {
 	 	this.disableBroadcast = this.push || this.pull;
 	 }
 
-	 openModal() {
+	 openBuildClassModal() {
 		let modal = this.modalCtrl.create(BuildClassModalPage);
 	    modal.onDidDismiss(data => {
 	    	if(typeof(data)!="undefined"){
@@ -123,6 +124,20 @@ export class DeviceDetailPage {
 	   	});
 	   	modal.present();
 	  }
+
+	  openPushModal() {
+		let modal = this.modalCtrl.create(PushModal,{cameras:this.device.cameraList,id:this.device.id});
+	    modal.onDidDismiss(data => {
+	    	// if(typeof(data)!="undefined"){
+	    	// 	this.deviceService.startPullOperate(data.buildingNum,data.classroomNum,this.device.id);
+	    	// 	this.videoStatusJudge();
+	    	// }else{
+	    	// 	this.pull = false;
+	    	// }
+	   	});
+	   	modal.present();
+	  }
+
 
 	 ngOnInit(): void {
 	    

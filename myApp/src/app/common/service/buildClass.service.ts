@@ -39,8 +39,8 @@ export class BuildClassService {
     let data = {"name":name}
     console.log("buildClassService:"+name);
     return this.http      
-      .post(url, JSON.stringify(data), {headers: this.headers})
-      //.get(url)
+      //.post(url, JSON.stringify(data), {headers: this.headers})
+      .get(url)
       .toPromise()
       .then(response => response.json().data.data.classroomList as Classroom[])
       .catch(this.handleError);

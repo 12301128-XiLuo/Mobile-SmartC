@@ -10,6 +10,7 @@ import { DevicePage } from '../pages/device/device';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DeviceDetailPage } from '../pages/device/device-detail/deviceDetail';
 import { BuildClassModalPage } from '../pages/device/device-detail/modal/buildClassModal';
+import { PushModal } from '../pages/device/device-detail/modal/pushModal';
 import { LoginPage } from '../pages/login/login';
 
 
@@ -25,6 +26,7 @@ import { BuildClassService } from './common/service/buildClass.service';
 import { UserService } from './common/service/user.service';
 import { StorageService } from './common/service/storage.service';
 import { MessageService } from './common/service/message.service';
+import { VideoService } from './common/service/video.service';
 //pipe
 import { BuildPipe } from './common/pipe/device.pipe';
 //import { usernameValidator } from './common/providers/validator';
@@ -39,6 +41,7 @@ import { BuildPipe } from './common/pipe/device.pipe';
     TabsPage,
     DeviceDetailPage,
     BuildClassModalPage,
+    PushModal,
     LoginPage,
     BuildPipe
   ],
@@ -61,6 +64,7 @@ import { BuildPipe } from './common/pipe/device.pipe';
     TabsPage,
     DeviceDetailPage,
     BuildClassModalPage,
+    PushModal,
     LoginPage
   ],
   providers: [
@@ -71,7 +75,8 @@ import { BuildPipe } from './common/pipe/device.pipe';
     BuildClassService,
     UserService,
     StorageService,
-    MessageService
+    MessageService,
+    VideoService
   ]
 })
 export class AppModule {}

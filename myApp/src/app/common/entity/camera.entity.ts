@@ -5,5 +5,6 @@ export class Camera{
 	camerId : number;
 	cameraTypeId : number;
     cameraStatus : number;
+    cameraName : string;
     cameraAngle : string;
 }

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      播放
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text showWhen="ios">返回</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="outer-content">
+  <div padding>
+    <ion-segment [(ngModel)]="cameraSegment" (ngModelChange)="segmentChange($event)">
+      <ion-segment-button *ngFor="let camera of cameras" value="{{camera.cameraId}}">
+        {{camera.cameraAngle}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <ion-card>
+    
+    <ion-card-content>
+      <div class="videoBox">
+          <div id="palyerVideoBox"></div>
+      </div><!-- videoBox -->
+    </ion-card-content>
+    
+  </ion-card>
+
+  <ion-list>
+    <ion-grid>
+     <ion-row>
+      <ion-col width-25><button ion-button color="primary" style="width:100%">向上</button></ion-col>
+      <ion-col width-25><button ion-button color="primary" style="width:100%">向下</button></ion-col>
+      <ion-col width-25><button ion-button color="primary" style="width:100%">向左</button></ion-col>
+      <ion-col width-25><button ion-button color="primary" style="width:100%">向右</button></ion-col>
+    </ion-row>
+    </ion-grid>
+  </ion-list>
+  
+</ion-content>
