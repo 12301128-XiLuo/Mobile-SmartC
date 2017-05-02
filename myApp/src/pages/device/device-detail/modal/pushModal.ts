@@ -34,14 +34,19 @@ export class PushModal {
   dismiss() {
     this.viewCtrl.dismiss();
   }
-
+  /**
+   * [getPullAddress 获取摄像头播放地址]
+   */
   getPullAddress(): void {
     this.videoService.getPullAddress(this.id,this.cameraId).then(data => {
       this.address = data.address;
       this.getLineVedio(data.address);
     });
   }
-  //获取直播视频
+  /**
+   * [getLineVedio 根据地址进行视频直播]
+   * @param {[string]} url [视频地址]
+   */
   getLineVedio(url): void{
       console.log("test:"+url);
       var player = jwplayer('palyerVideoBox').setup({
@@ -57,8 +62,14 @@ export class PushModal {
           }
       });
   };
+  /**
+   * [segmentChange 切换摄像头]
+   * @param {[number]} _event [切换回传的cameraID的值]
+   */
   segmentChange(_event):void{
     console.log(_event);
+    this.cameraId = _event;
+    this.getPullAddress();
   }
   ngOnInit(): void {
     this.cameraLen = this.cameras.length;
@@ -66,15 +77,7 @@ export class PushModal {
       this.cameraId = this.cameras[0].camerId;
       this.cameraSegment = this.cameraId;
     }
+    //初始视频播放
     //this.getPullAddress();
-  }
-
-  showAlert() {
-    let alert = this.alertCtrl.create({
-      title: '注意！',
-      subTitle: '请选择教学楼和教室！',
-      buttons: ['好']
-    });
-    alert.present();
   }
 }
