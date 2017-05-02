@@ -3,7 +3,9 @@ import { ModalController, Platform, NavParams, ViewController,AlertController } 
 
 import {Camera} from "../../../../app/common/entity/camera.entity";
 import { VideoService } from '../../../../app/common/service/video.service';
+//import * as jwplayer from 'jwplayer';
 declare var jwplayer: any;
+declare var cyberplayer: any;
 
 @Component({
   templateUrl: 'pushModal.html' 
@@ -14,7 +16,7 @@ export class PushModal {
   address : string;
   cameraId : number=null;
   cameraLen : number;
-  cameraSegment : number;
+  cameraSegment : number = 0;
 
   constructor(
     public platform: Platform,
@@ -48,19 +50,32 @@ export class PushModal {
    * @param {[string]} url [视频地址]
    */
   getLineVedio(url): void{
+      
+      url = 'rtmp://push.bcelive.com/live/2or4444gbh7rfbipio';
       console.log("test:"+url);
-      var player = jwplayer('palyerVideoBox').setup({
-          /*flashplayer: 'js/plugins/mediaplayer-5.7/player.swf',*/
-          file : url,
-          width : '100%',
-          height : '100%',
-          fallback : 'false',
-          autostart : 'true',
-          primary : 'flash',
-          rtmp : {
-              bufferlength : 0.1
-          }
-      });
+      // var player = jwplayer('playerVideoBox').setup({
+      //     /*flashplayer: 'js/plugins/mediaplayer-5.7/player.swf',*/
+      //     file : url,
+      //     width : '100%',
+      //     height : '100%',
+      //     fallback : 'false',
+      //     autostart : 'true',
+      //     primary : 'flash',
+      //     rtmp : {
+      //         bufferlength : 0.1
+      //     }
+      // });
+      var player = cyberplayer("playerVideoBox").setup({
+        width: "100%",
+        height: 370,
+        stretching: "uniform",
+        file: "http://gkdp982dqqza47gihc1.exp.bcelive.com/lss-gm4k64ts8y7kevfi/live.m3u8",
+        autostart: true,
+        repeat: false,
+        volume: 90,
+        controls: true,
+        ak: 'ba77daba024d4bbe91fda6da0d600352' // 公有云平台注册即可获得accessKey
+    });
   };
   /**
    * [segmentChange 切换摄像头]
@@ -69,7 +84,7 @@ export class PushModal {
   segmentChange(_event):void{
     console.log(_event);
     this.cameraId = _event;
-    this.getPullAddress();
+    //this.getPullAddress();
   }
   ngOnInit(): void {
     this.cameraLen = this.cameras.length;
@@ -79,5 +94,6 @@ export class PushModal {
     }
     //初始视频播放
     //this.getPullAddress();
+    this.getLineVedio("aa");
   }
 }
