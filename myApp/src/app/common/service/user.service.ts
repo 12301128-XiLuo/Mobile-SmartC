@@ -16,17 +16,17 @@ export class UserService {
 	constructor(private http: Http) { }
 
 	login(username: string,password: string): Promise<any>{
-		let url = 'api/user';
-		//let url = '/login';
-	    let data = {
-	    	"username":username,
-	    	"password":Md5.hashStr(password).toString()
-	    }
+		//let url = 'api/user';
+		let url = 'http://192.168.1.105:8080/login?username='+username+'&password='+Md5.hashStr(password).toString();	    
+		// let data = {
+	 //    	"username":username,
+	 //    	"password":Md5.hashStr(password).toString()
+	 //    }
 	    return this.http      
 	      //.post(url, JSON.stringify(data), {headers: this.headers})
 	      .get(url)
 	      .toPromise()
-	      .then(response => response.json().data.data)
+	      .then(response => response.json().data)
 	      .catch(this.handleError);
 	}
 	private handleError(error: any): Promise<any> {

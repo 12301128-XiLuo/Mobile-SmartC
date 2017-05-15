@@ -32,10 +32,10 @@
   <ion-list>
     <ion-grid>
      <ion-row>
-      <ion-col width-25><button ion-button color="primary" style="width:100%">向上</button></ion-col>
-      <ion-col width-25><button ion-button color="primary" style="width:100%">向下</button></ion-col>
-      <ion-col width-25><button ion-button color="primary" style="width:100%">向左</button></ion-col>
-      <ion-col width-25><button ion-button color="primary" style="width:100%">向右</button></ion-col>
+      <ion-col width-25><button ion-button color="primary" style="width:100%" (click)="directorCamera('up')">向上</button></ion-col>
+      <ion-col width-25><button ion-button color="primary" style="width:100%" (click)="directorCamera('down')">向下</button></ion-col>
+      <ion-col width-25><button ion-button color="primary" style="width:100%" (click)="directorCamera('left')">向左</button></ion-col>
+      <ion-col width-25><button ion-button color="primary" style="width:100%" (click)="directorCamera('right')">向右</button></ion-col>
     </ion-row>
     </ion-grid>
   </ion-list>

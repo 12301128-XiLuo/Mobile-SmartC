@@ -43,7 +43,7 @@ export class SettingsPage {
   	}
   	ngOnInit(): void {
   		this.user = this.storageService.read<User>('user');
-	    this.getMessages();	
+	    //this.getMessages();	
 	}
 
 }

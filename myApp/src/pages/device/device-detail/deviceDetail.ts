@@ -5,6 +5,7 @@ import { Device } from '../../../app/common/entity/device.entity';
 import { Camera} from '../../../app/common/entity/camera.entity';
 
 import { DeviceService } from '../../../app/common/service/device.service';
+import { VideoService } from '../../../app/common/service/video.service';
 
 import { BuildClassModalPage } from './modal/buildClassModal';
 import { PushModal } from './modal/pushModal';
@@ -30,7 +31,7 @@ export class DeviceDetailPage {
 	disablePull : boolean = false;
 	disableBroadcast : boolean = false;
 
-	constructor(private deviceService: DeviceService,public navCtrl: NavController,public navParams: NavParams,public modalCtrl: ModalController) {
+	constructor(private videoService: VideoService,private deviceService: DeviceService,public navCtrl: NavController,public navParams: NavParams,public modalCtrl: ModalController) {
 	    this.device = navParams.data;
 	    this.cameras = this.device.cameraList;
 	    this.raspberry = this.device.raspberryStreamStatus;
@@ -81,9 +82,9 @@ export class DeviceDetailPage {
 	  * @param {[type]} event [开启或关闭 close：open]
 	  * @param {[type]} id    [摄像头ID]
 	  */
-	 cameraManage(event,id): void{
+	 cameraManage(event,id,code): void{
 	 	let operate = event?'open':'close';	
-	 	this.deviceService.operateCamera(id,operate); 
+	 	this.deviceService.operateCamera(this.device.id,id,code,operate); 
 	 }
 	 /**
 	  * [videoManage description]
@@ -98,7 +99,7 @@ export class DeviceDetailPage {
 	 		this.openBuildClassModal();
 	 	}else{
 	 		this.videoStatusJudge();
-	 		this.deviceService.operateStream(this.device.id,operate);
+	 		this.videoService.operateStream(this.device.id,operate);
 	 	}
 	 	console.log(operate);
 
@@ -116,7 +117,7 @@ export class DeviceDetailPage {
 		let modal = this.modalCtrl.create(BuildClassModalPage);
 	    modal.onDidDismiss(data => {
 	    	if(typeof(data)!="undefined"){
-	    		this.deviceService.startPullOperate(data.buildingNum,data.classroomNum,this.device.id);
+	    		this.videoService.startPullOperate(data.buildingNum,data.classroomNum,this.device.id);
 	    		this.videoStatusJudge();
 	    	}else{
 	    		this.pull = false;

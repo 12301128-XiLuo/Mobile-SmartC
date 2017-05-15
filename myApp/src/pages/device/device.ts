@@ -41,12 +41,12 @@ export class DevicePage {
   	/**
   	 * [getBuildings 获取教学楼列表]
   	 */
-  	getBuildings(): void {
-  		this.buildClassService.getBuildings().then(buildings => this.buildings = buildings);
-  	}
+  	// getBuildings(): void {
+  	// 	this.buildClassService.getBuildings().then(buildings => this.buildings = buildings);
+  	// }
 
   	ngOnInit(): void {
 	    this.getDevices();
-	    this.getBuildings();
+	    //this.getBuildings();
 	}
 }

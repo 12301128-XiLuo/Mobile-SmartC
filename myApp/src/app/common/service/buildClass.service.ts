@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 export class BuildClassService {
 	private buildingUrl = 'api/buildings';
 	private classroomUrl = 'api/classrooms';
-
+  private videoUrl = 'http://192.168.1.105:8080/videos/';
 	private headers = new Headers({'Content-Type': 'application/json'});
 
 	constructor(private http: Http) { }
@@ -35,25 +35,38 @@ export class BuildClassService {
 	 * @return {Promise<Classroom[]>}      [教室列表]
 	 */
 	getClassroomsByName(name: string): Promise<Classroom[]>{
-		let url = this.classroomUrl;
-    let data = {"name":name}
-    console.log("buildClassService:"+name);
-    return this.http      
-      //.post(url, JSON.stringify(data), {headers: this.headers})
-      .get(url)
-      .toPromise()
-      .then(response => response.json().data.data.classroomList as Classroom[])
-      .catch(this.handleError);
+		// let url = this.classroomUrl;
+  //   let data = {"name":name}
+  //   console.log("buildClassService:"+name);
+  //   return this.http      
+  //     //.post(url, JSON.stringify(data), {headers: this.headers})
+  //     .get(url)
+  //     .toPromise()
+  //     .then(response => response.json().data.data.classroomList as Classroom[])
+  //     .catch(this.handleError);
+      let url = this.videoUrl + 'classroomByBuilding?name='+name;
+      let data = {
+        "name": name
+      };
+      return this.http
+              .get(url)
+              .toPromise()
+              .then(response => response.json().data.classroomList as Classroom[])
+              .catch(this.handleError);
 	}
   /**
    * [getPushBuildClass 获取正在推流的教学楼]
    * @return {Promise<Building[]>} [description]
    */
   getPushBuildings(): Promise<Building[]>{
-    let url = "api/buildings"
-    return this.http.get(url)
+    return this.http.get(this.videoUrl+'pushBuilding')
              .toPromise()
-             .then(response => response.json().data.data.buildingList as Building[])
+             .then(response => response.json().data.buildingList as Building[])
              .catch(this.handleError);
+    // let url = "api/buildings"
+    // return this.http.get(url)
+    //          .toPromise()
+    //          .then(response => response.json().data.data.buildingList as Building[])
+    //          .catch(this.handleError);
   }
 }

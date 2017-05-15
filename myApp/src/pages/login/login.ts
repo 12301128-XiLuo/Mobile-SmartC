@@ -11,7 +11,7 @@ import { UserService } from '../../app/common/service/user.service';
 import { StorageService } from '../../app/common/service/storage.service';
 
 //providers
-import { usernameValidator } from '../../app/common/providers/validator'
+import { usernameValidator } from '../../app/common/providers/validator';
 
 @Component({
   selector: 'page-login',
@@ -33,7 +33,7 @@ export class LoginPage {
 	 });
 	login(user,event): void{
 		this.userSevice.login(user.LoginName,user.LoginPwd).then(data => {
-			if(data.msg == "0"){
+			if(data.judge == "0"){
 				this.storageService.write('user',data.user);
 				// let ss = this.storageService.read<User>('user');
     			//console.log(ss);

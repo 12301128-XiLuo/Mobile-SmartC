@@ -48,9 +48,9 @@
     <ion-list-header class="list-header">
       摄像头
     </ion-list-header>
-    <ion-item *ngFor="let camera of cameras">
-      <ion-toggle [ngModel]="camera.cameraStatus==1?1:0" (ngModelChange)="cameraManage($event,camera.cameraId)" [disabled]="disableJudge"></ion-toggle>
-      <ion-label>{{camera.cameraName}}</ion-label>  
+    <ion-item *ngFor="let camera of cameras;let i=index">
+      <ion-toggle [ngModel]="camera.cameraStatus==1?1:0" (ngModelChange)="cameraManage($event,camera.cameraId,i+1)" [disabled]="disableJudge"></ion-toggle>
+      <ion-label>{{camera.cameraAngle}}</ion-label>  
     </ion-item>
      
   </ion-list>

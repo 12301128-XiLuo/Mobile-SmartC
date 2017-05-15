@@ -17,6 +17,7 @@ export class PushModal {
   cameraId : number=null;
   cameraLen : number;
   cameraSegment : number = 0;
+  cameraCode : number = 0;
 
   constructor(
     public platform: Platform,
@@ -85,6 +86,13 @@ export class PushModal {
     console.log(_event);
     this.cameraId = _event;
     //this.getPullAddress();
+  }
+  /**
+   * [directorCamera description]
+   * @param {[type]} direction [description]
+   */
+  directorCamera(direction): void{
+    this.videoService.directorCamera(this.id,this.cameraCode,direction);
   }
   ngOnInit(): void {
     this.cameraLen = this.cameras.length;

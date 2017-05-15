@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
 export class VideoService {
-	private deviceUrl = 'api/video';
+	private videoUrl = 'http://192.168.1.105:8080/videos/';
 	private headers = new Headers({'Content-Type': 'application/json'});
 
 	constructor(private http: Http) { }
@@ -20,17 +20,83 @@ export class VideoService {
     	return Promise.reject(error.message || error);
   	}
 
-    getPullAddress(id,cameraId): Promise<any>{
-      let url = '/ajax_get_pull_address';
+    getPullAddress(id,code): Promise<any>{      
+      let url = this.videoUrl+'play/'+id+'?code='+code;
+      //let url = '/ajax_get_pull_address';
       let data = {
-        "did":id,
-        "cameraId":cameraId
-      }            
-      return this.http      
-        .post(url, JSON.stringify(data), {headers: this.headers})
-        //.get(url)
+        'did': id,
+        'code':code
+      };
+      return this.commonOperaGetFunc(url);
+    }
+
+
+    /**
+     * [operateStream 操作视频推拉流]
+     * @param {[type]} id      [教室设备列表id]
+     * @param {[type]} operate [操作类型 start_push|broadcast stop_push|pull|broadcast]
+     */
+    operateStream(id,operate): void{
+      // let url = '/ajax_edit_stream_status';
+      // let data = {
+      //   "did":id,
+      //   "operation":operate
+      // }
+      // this.commonOperatFunc(url,data);
+      let url = this.videoUrl+id+'?operation='+operate;
+      this.commonOperaGetFunc(url);
+    }
+
+    /**
+     * [startPullOperate description]
+     * @param {[type]} inputBuilding  [教学楼]
+     * @param {[type]} classroomNum [教室]
+     * @param {[type]} id           [教室设备列表id]
+     */
+    startPullOperate(inputBuilding,inputClassroom,id): Promise<any>{
+      // let url = '/ajax_pull_stream_status';
+      // let data = {
+      //   "buildingNum":buildingNum,
+      //   "classroomNum":classroomNum,
+      //   "did":id
+      // }      
+      // this.commonOperatFunc(url,data);
+      let url = this.videoUrl+'pull/'+id+'?buildingNum='+inputBuilding+'&classroomNum='+inputClassroom;
+      let data = {
+        "buildingNum":inputBuilding,
+        "classroomNum":inputClassroom,
+        "did":id
+      };
+      return this.commonOperaGetFunc(url);
+    }
+
+    /**
+     * [directorCamera 摄像头导播]
+     * @param  {[type]}       id        [设备ID]
+     * @param  {[type]}       code      [区分摄像头（1、2、3...） ]
+     * @param  {[type]}       direction [方向 up down left right]
+     * @return {Promise<any>}           []
+     */
+    directorCamera(id,code,direction): Promise<any>{
+      let url = this.videoUrl+'camera/'+id+'?code='+code+'&direction='+direction;
+      //let url = '/ajax_director_camera';
+      // let data = {
+      //   'did': id,
+      //   'code': code,
+      //   'direction': direction
+      // }
+      return this.commonOperaGetFunc(url)
+    }
+    /**
+     * [commonOperaGetFunc 公共Get方法]
+     * @param {[type]} url  [访问地址]
+     */
+    commonOperaGetFunc(url): Promise<any>{
+      console.log(url);
+      return this.http
+        .get(url)
         .toPromise()
-        .then(response => response.json().data.data)
+        .then(response => response.json().data)
         .catch(this.handleError);
     }
 
