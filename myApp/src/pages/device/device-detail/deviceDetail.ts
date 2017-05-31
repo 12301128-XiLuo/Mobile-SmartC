@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams,ModalController } from 'ionic-angular';
+import { NavController,NavParams,ModalController,ToastController } from 'ionic-angular';
 
 import { Device } from '../../../app/common/entity/device.entity';
 import { Camera} from '../../../app/common/entity/camera.entity';
@@ -16,7 +16,7 @@ import { PushModal } from './modal/pushModal';
 })
 
 export class DeviceDetailPage {
-	
+	id: number;
 	device: Device;//设备信息
 	cameras: Camera[];//摄像头信息数组
 	computer : boolean = false;//电脑状态
@@ -31,13 +31,15 @@ export class DeviceDetailPage {
 	disablePull : boolean = false;
 	disableBroadcast : boolean = false;
 
-	constructor(private videoService: VideoService,private deviceService: DeviceService,public navCtrl: NavController,public navParams: NavParams,public modalCtrl: ModalController) {
-	    this.device = navParams.data;
-	    this.cameras = this.device.cameraList;
-	    this.raspberry = this.device.raspberryStreamStatus;
-	    
-	    console.log(this.device);
-	    this.initStatus();
+	constructor(private videoService: VideoService,
+			private deviceService: DeviceService,
+			public navCtrl: NavController,
+			public navParams: NavParams,
+			public modalCtrl: ModalController,
+			public toastCtrl: ToastController) {
+	    this.device = navParams.data;  
+	    //console.log(this.id);
+	     
 	 }
 	 /**
 	  * [initStatus 初始化状态]
@@ -75,7 +77,10 @@ export class DeviceDetailPage {
 	  */
 	 deviceManage(event,type): void{
 	 	let operate = event?'open':'close';
-	 	this.deviceService.operateDevice(this.device.id,type,operate);	 	
+	 	this.deviceService.operateDevice(this.device.id,type,operate).then(data=>{
+	 		let message = data.wSocketMessage;
+	 		this.handleMessage(message);
+	 	});	 	
 	 }
 	 /**
 	  * [cameraManage 摄像头管理]
@@ -84,7 +89,10 @@ export class DeviceDetailPage {
 	  */
 	 cameraManage(event,id,code): void{
 	 	let operate = event?'open':'close';	
-	 	this.deviceService.operateCamera(this.device.id,id,code,operate); 
+	 	this.deviceService.operateCamera(this.device.id,id,code,operate).then(data=>{
+	 		let message = data.wSocketMessage;
+	 		this.handleMessage(message);
+	 	}); 
 	 }
 	 /**
 	  * [videoManage description]
@@ -99,7 +107,10 @@ export class DeviceDetailPage {
 	 		this.openBuildClassModal();
 	 	}else{
 	 		this.videoStatusJudge();
-	 		this.videoService.operateStream(this.device.id,operate);
+	 		this.videoService.operateStream(this.device.id,operate).then(data=>{
+		 		let message = data.wSocketMessage;
+		 		this.handleMessage(message);
+	 		});
 	 	}
 	 	console.log(operate);
 
@@ -113,6 +124,7 @@ export class DeviceDetailPage {
 	 	this.disableBroadcast = this.push || this.pull;
 	 }
 
+	 /** [openBuildClassModal 打开选择教学楼教室modal] */
 	 openBuildClassModal() {
 		let modal = this.modalCtrl.create(BuildClassModalPage);
 	    modal.onDidDismiss(data => {
@@ -126,22 +138,41 @@ export class DeviceDetailPage {
 	   	modal.present();
 	  }
 
+	  /**
+	   * [openPushModal 打开视频播放modal]
+	   */
 	  openPushModal() {
 		let modal = this.modalCtrl.create(PushModal,{cameras:this.device.cameraList,id:this.device.id});
 	    modal.onDidDismiss(data => {
-	    	// if(typeof(data)!="undefined"){
-	    	// 	this.deviceService.startPullOperate(data.buildingNum,data.classroomNum,this.device.id);
-	    	// 	this.videoStatusJudge();
-	    	// }else{
-	    	// 	this.pull = false;
-	    	// }
 	   	});
 	   	modal.present();
 	  }
 
+	  /**
+	   * [getDeviceById 根据ID获取device数据]
+	   */
+	  getDeviceById(){
+	  	this.deviceService.getDeviceById(this.device.id).then(data=>{
+	  		this.device = data;
+	  		console.log(data)
+	  		this.cameras = this.device.cameraList;
+	    	this.raspberry = this.device.raspberryStreamStatus;
+	    	this.initStatus();
+	  	})
+	  	
+	  }
+
+	  handleMessage(message): void{
+	  	let toast = this.toastCtrl.create({
+		      message: message.message,
+		      duration: 3000
+	    });
+	    toast.present();
+	  }
+
 
 	 ngOnInit(): void {
-	    
+	    this.getDeviceById(); 
 	 }
 
 }

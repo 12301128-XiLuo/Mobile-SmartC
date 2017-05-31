@@ -28,22 +28,21 @@ export class SettingsPage {
     public appCtrl: App) {
 
   }
-    	/**
+    /**
   	 * [getDevices 获取设备列表]
   	 */
   	getMessages(): void {
-  		let userId = this.user.id;
-  		this.messageService.getMessages(userId).then(messages => this.messages = messages);
+  		//let userId = this.user.id;
+  		this.messageService.getMessages().then(messages => this.messages = messages);
   	}
 
   	logout(): void{
   		this.storageService.remove("user");
-  		//this.navCtrl.push(LoginPage);
   		this.appCtrl.getRootNav().push(LoginPage);
   	}
   	ngOnInit(): void {
   		this.user = this.storageService.read<User>('user');
-	    //this.getMessages();	
+	    this.getMessages();	
 	}
 
 }

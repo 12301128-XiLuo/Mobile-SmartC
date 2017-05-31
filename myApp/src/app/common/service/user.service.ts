@@ -20,7 +20,6 @@ export class UserService {
 	}
 
 	login(username: string,password: string): Promise<any>{
-		//let url = this.userUrl+'/login?username='+username+'&password='+Md5.hashStr(password).toString();	    
 		let url = this.constant.URL+'login?username='+username+'&password='+Md5.hashStr(password).toString();
 	    return this.http      
 	      .get(url)

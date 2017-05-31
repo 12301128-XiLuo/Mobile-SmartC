@@ -35,8 +35,13 @@ export class DeviceService {
     	return Promise.reject(error.message || error);
   	}
 
+    /**
+     * [getDeviceById 根据ID获取deviceinfo]
+     * @param  {[type]}          id [设备ID]
+     * @return {Promise<Device>}    [description]
+     */
     getDeviceById(id): Promise<Device>{
-      let url = '/ajax_get_classroom_info';
+      let url = this.assignDeviceUrl+id;
       return this.http
           .get(url)
           .toPromise()
@@ -50,9 +55,9 @@ export class DeviceService {
      * @param {[type]} device  [设备类型]
      * @param {[type]} operate [操作类型 open close]
      */
-    operateDevice(id,device,operate): void{      
+    operateDevice(id,device,operate): Promise<any>{      
       let url = this.deviceUrl+id+'?device='+device+'&operation='+operate;
-      this.commonOperatGetFunc(url);
+      return this.commonOperatGetFunc(url);
     }
 
     /**
@@ -61,9 +66,9 @@ export class DeviceService {
      * @param {[type]} cameraId [摄像机id]
      * @param {[type]} operate  [操作类型 open close]
      */
-    operateCamera(deviceId,cameraId,code,operate): void{
+    operateCamera(deviceId,cameraId,code,operate): Promise<any>{
       let url = this.deviceUrl+'camera/'+cameraId+'?code='+code+'&did='+deviceId+'&operation='+operate;
-      this.commonOperatGetFunc(url);
+      return this.commonOperatGetFunc(url);
     }
 
     /**
@@ -85,8 +90,8 @@ export class DeviceService {
      * @param {[type]} url  [访问地址]
      * @param {[type]} data [传输数据]
      */
-    commonOperatGetFunc(url): void{
-      this.http
+    commonOperatGetFunc(url): Promise<any>{
+      return this.http
         .get(url)
         .toPromise()
         .then(res => res.json().data)

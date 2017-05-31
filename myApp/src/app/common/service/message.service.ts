@@ -12,19 +12,14 @@ import 'rxjs/add/operator/toPromise';
 
 export class MessageService {
 	private messageUrl : string;
-	private headers = new Headers({'Content-Type': 'application/json'});
-
+	
 	constructor(private http: Http,private constant : Constant) { 
 	    this.messageUrl = constant.URL+'messages/';
 	}
 
-	getMessages(userId): Promise<Message[]>{
-	    let data = {
-	    	"userId":userId
-	    }
+	getMessages(): Promise<Message[]>{
 	    return this.http      
-	      //.post(url, JSON.stringify(data), {headers: this.headers})
-	      .get(this.messageUrl)
+	      .get(this.messageUrl+'allList')
 	      .toPromise()
 	      .then(response => response.json().data.list as Message[])
 	      .catch(this.handleError);
