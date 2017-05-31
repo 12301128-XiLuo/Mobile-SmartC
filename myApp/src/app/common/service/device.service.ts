@@ -2,6 +2,7 @@
  * 设备service类
  */
 import { Device } from '../entity/device.entity'
+import { Constant } from '../constant/constant';
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
@@ -10,10 +11,14 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
 export class DeviceService {
-	private deviceUrl = 'http://192.168.1.105:8080/deviceMonitor/';	
+  private deviceUrl;  
+	private assignDeviceUrl;	
   private headers = new Headers({'Content-Type': 'application/json'});
 
-	constructor(private http: Http) { }
+	constructor(private http: Http,private constant : Constant) { 
+    this.deviceUrl = constant.URL+'deviceMonitor/';
+    this.assignDeviceUrl = constant.URL+'assignDevice/';
+  }
 	
 	/**
 	 * [getDevices 获取设备列表]
@@ -30,20 +35,22 @@ export class DeviceService {
     	return Promise.reject(error.message || error);
   	}
 
+    getDeviceById(id): Promise<Device>{
+      let url = '/ajax_get_classroom_info';
+      return this.http
+          .get(url)
+          .toPromise()
+          .then(response => response.json().data.deviceInfo as Device)
+          .catch(this.handleError);
+    }
+
     /**
      * [operateDevice 操作设备状态]
      * @param {[type]} id      [教室设备列表id]
      * @param {[type]} device  [设备类型]
      * @param {[type]} operate [操作类型 open close]
      */
-    operateDevice(id,device,operate): void{
-      // let url = '/ajax_edit_device_status';
-      // let data = {
-      //   "did":id,
-      //   "device":device,
-      //   "operation":operate
-      // }
-      // this.commonOperatFunc(url,data);
+    operateDevice(id,device,operate): void{      
       let url = this.deviceUrl+id+'?device='+device+'&operation='+operate;
       this.commonOperatGetFunc(url);
     }
@@ -55,13 +62,6 @@ export class DeviceService {
      * @param {[type]} operate  [操作类型 open close]
      */
     operateCamera(deviceId,cameraId,code,operate): void{
-      // let url = '/ajax_edit_camera_status';
-      // let data = {
-      //   "did":deviceId,
-      //   "cid":cameraId,
-      //   "operation":operate
-      // }
-      // this.commonOperatFunc(url,data);
       let url = this.deviceUrl+'camera/'+cameraId+'?code='+code+'&did='+deviceId+'&operation='+operate;
       this.commonOperatGetFunc(url);
     }
@@ -86,7 +86,6 @@ export class DeviceService {
      * @param {[type]} data [传输数据]
      */
     commonOperatGetFunc(url): void{
-      //console.log(data);
       this.http
         .get(url)
         .toPromise()

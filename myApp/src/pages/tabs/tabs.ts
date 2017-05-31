@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-
-import { VideoPage } from '../video/video';
 import { SettingsPage } from '../settings/settings';
 import { DevicePage } from '../device/device';
 
@@ -9,8 +7,7 @@ import { DevicePage } from '../device/device';
 })
 export class TabsPage {
 
-  tab1Root = DevicePage;
-  tab2Root = VideoPage;
+  tab1Root = DevicePage;  
   tab3Root = SettingsPage;
 
   constructor() {

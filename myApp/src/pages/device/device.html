@@ -13,6 +13,7 @@
     <ion-item>
     <ion-label>教学楼</ion-label>
       <ion-select [(ngModel)]="buildModel" okText="确认" cancelText="取消">
+        <ion-option value=''>全部</ion-option>
         <ion-option *ngFor="let building of buildings" value="{{building.buildingNum}}">
           {{building.buildingNum}}
         </ion-option>

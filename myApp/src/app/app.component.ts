@@ -14,8 +14,8 @@ import { User } from './common/entity/user.entity';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
-  //rootPage:any = LoginPage;
+  //rootPage:any = TabsPage;
+  rootPage:any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storageService: StorageService) {
     let user = this.storageService.read<User>('user');

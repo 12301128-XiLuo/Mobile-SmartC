@@ -1,5 +1,8 @@
 import { Building } from '../entity/building.entity';
+import { BuildClass } from '../entity/buildclass.entity';
 import { Classroom } from '../entity/classroom.entity';
+import { Constant } from '../constant/constant';
+
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
@@ -8,20 +11,22 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
 export class BuildClassService {
-	private buildingUrl = 'api/buildings';
-	private classroomUrl = 'api/classrooms';
-  private videoUrl = 'http://192.168.1.105:8080/videos/';
+	private buildingUrl;
+  private videoUrl;
 	private headers = new Headers({'Content-Type': 'application/json'});
 
-	constructor(private http: Http) { }
+	constructor(private http: Http,private constant : Constant) { 
+    this.videoUrl = constant.URL+'videos/';
+    this.buildingUrl = constant.URL+'buildingClassrooms/';
+  }
 	/**
 	 * [getBuildings 获取教学楼列表]
 	 * @return {Promise<Building[]>} [教学楼列表]
 	 */
 	getBuildings(): Promise<Building[]> {
-    	return this.http.get(this.buildingUrl)
+    	return this.http.get(this.buildingUrl+'buildings')
              .toPromise()
-             .then(response => response.json().data.data.buildingList as Building[])
+             .then(response => response.json().data.buildingList as Building[])
              .catch(this.handleError);
   	}
 	private handleError(error: any): Promise<any> {

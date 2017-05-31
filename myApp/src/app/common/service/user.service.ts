@@ -1,7 +1,8 @@
 /**
  * 设备service类
  */
-import { User } from '../entity/user.entity'
+import { User } from '../entity/user.entity';
+import { Constant } from '../constant/constant';
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
@@ -12,18 +13,16 @@ import { Md5 } from "ts-md5/dist/md5";
 
 export class UserService {
 	private headers = new Headers({'Content-Type': 'application/json'});
-
-	constructor(private http: Http) { }
+	private userUrl;
+	
+	constructor(private http: Http,private constant : Constant) { 
+	    this.userUrl = constant.URL+'users/';
+	}
 
 	login(username: string,password: string): Promise<any>{
-		//let url = 'api/user';
-		let url = 'http://192.168.1.105:8080/login?username='+username+'&password='+Md5.hashStr(password).toString();	    
-		// let data = {
-	 //    	"username":username,
-	 //    	"password":Md5.hashStr(password).toString()
-	 //    }
+		//let url = this.userUrl+'/login?username='+username+'&password='+Md5.hashStr(password).toString();	    
+		let url = this.constant.URL+'login?username='+username+'&password='+Md5.hashStr(password).toString();
 	    return this.http      
-	      //.post(url, JSON.stringify(data), {headers: this.headers})
 	      .get(url)
 	      .toPromise()
 	      .then(response => response.json().data)

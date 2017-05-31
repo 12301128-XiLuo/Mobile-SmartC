@@ -7,6 +7,7 @@ import { NavController } from 'ionic-angular';
 //entity
 import { Device } from '../../app/common/entity/device.entity';
 import { Building } from '../../app/common/entity/building.entity';
+import { BuildClass } from '../../app/common/entity/buildclass.entity';
 import { Classroom } from '../../app/common/entity/classroom.entity';
 //service
 import { DeviceService } from '../../app/common/service/device.service';
@@ -41,12 +42,12 @@ export class DevicePage {
   	/**
   	 * [getBuildings 获取教学楼列表]
   	 */
-  	// getBuildings(): void {
-  	// 	this.buildClassService.getBuildings().then(buildings => this.buildings = buildings);
-  	// }
+  	getBuildings(): void {
+  		this.buildClassService.getBuildings().then(buildings => this.buildings = buildings);
+  	}
 
   	ngOnInit(): void {
 	    this.getDevices();
-	    //this.getBuildings();
+	    this.getBuildings();
 	}
 }

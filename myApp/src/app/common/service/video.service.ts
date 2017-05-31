@@ -2,6 +2,7 @@
  * 设备service类
  */
 import { Camera } from '../entity/camera.entity'
+import { Constant } from '../constant/constant';
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
@@ -10,10 +11,12 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
 export class VideoService {
-	private videoUrl = 'http://192.168.1.105:8080/videos/';
+	private videoUrl;
 	private headers = new Headers({'Content-Type': 'application/json'});
 
-	constructor(private http: Http) { }
+	constructor(private http: Http,private constant : Constant) { 
+    this.videoUrl = constant.URL+'videos/';
+  }
 	
   	private handleError(error: any): Promise<any> {
     	console.error('An error occurred', error); // for demo purposes only
@@ -22,7 +25,6 @@ export class VideoService {
 
     getPullAddress(id,code): Promise<any>{      
       let url = this.videoUrl+'play/'+id+'?code='+code;
-      //let url = '/ajax_get_pull_address';
       let data = {
         'did': id,
         'code':code
@@ -37,12 +39,6 @@ export class VideoService {
      * @param {[type]} operate [操作类型 start_push|broadcast stop_push|pull|broadcast]
      */
     operateStream(id,operate): void{
-      // let url = '/ajax_edit_stream_status';
-      // let data = {
-      //   "did":id,
-      //   "operation":operate
-      // }
-      // this.commonOperatFunc(url,data);
       let url = this.videoUrl+id+'?operation='+operate;
       this.commonOperaGetFunc(url);
     }
@@ -54,13 +50,6 @@ export class VideoService {
      * @param {[type]} id           [教室设备列表id]
      */
     startPullOperate(inputBuilding,inputClassroom,id): Promise<any>{
-      // let url = '/ajax_pull_stream_status';
-      // let data = {
-      //   "buildingNum":buildingNum,
-      //   "classroomNum":classroomNum,
-      //   "did":id
-      // }      
-      // this.commonOperatFunc(url,data);
       let url = this.videoUrl+'pull/'+id+'?buildingNum='+inputBuilding+'&classroomNum='+inputClassroom;
       let data = {
         "buildingNum":inputBuilding,
@@ -79,12 +68,6 @@ export class VideoService {
      */
     directorCamera(id,code,direction): Promise<any>{
       let url = this.videoUrl+'camera/'+id+'?code='+code+'&direction='+direction;
-      //let url = '/ajax_director_camera';
-      // let data = {
-      //   'did': id,
-      //   'code': code,
-      //   'direction': direction
-      // }
       return this.commonOperaGetFunc(url)
     }
     /**

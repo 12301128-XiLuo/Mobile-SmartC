@@ -4,7 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule }    from '@angular/http';
 
-import { VideoPage } from '../pages/video/video';
 import { SettingsPage } from '../pages/settings/settings';
 import { DevicePage } from '../pages/device/device';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -17,9 +16,6 @@ import { LoginPage } from '../pages/login/login';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-// Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
 //service
 import { DeviceService } from './common/service/device.service';
 import { BuildClassService } from './common/service/buildClass.service';
@@ -29,13 +25,14 @@ import { MessageService } from './common/service/message.service';
 import { VideoService } from './common/service/video.service';
 //pipe
 import { BuildPipe } from './common/pipe/device.pipe';
+
+import { Constant } from './common/constant/constant';
 //import { usernameValidator } from './common/providers/validator';
 
 
 @NgModule({
   declarations: [
     MyApp,
-    VideoPage,
     SettingsPage,
     DevicePage,
     TabsPage,
@@ -57,8 +54,7 @@ import { BuildPipe } from './common/pipe/device.pipe';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    VideoPage,
+    MyApp,    
     SettingsPage,
     DevicePage,
     TabsPage,
@@ -76,7 +72,8 @@ import { BuildPipe } from './common/pipe/device.pipe';
     UserService,
     StorageService,
     MessageService,
-    VideoService
+    VideoService,
+    Constant
   ]
 })
 export class AppModule {}
