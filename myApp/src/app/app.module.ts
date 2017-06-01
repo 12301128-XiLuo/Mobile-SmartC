@@ -45,7 +45,6 @@ import { Constant } from './common/constant/constant';
   imports: [
     BrowserModule,
     HttpModule,
-    //InMemoryWebApiModule.forRoot(InMemoryDataService),
     IonicModule.forRoot(MyApp,{
       backButtonText: '返回',
       modalEnter: 'modal-slide-in',

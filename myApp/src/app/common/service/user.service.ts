@@ -1,7 +1,6 @@
 /**
  * 设备service类
  */
-import { User } from '../entity/user.entity';
 import { Constant } from '../constant/constant';
 
 import { Injectable } from '@angular/core';
@@ -12,7 +11,7 @@ import { Md5 } from "ts-md5/dist/md5";
 @Injectable()
 
 export class UserService {
-	private headers = new Headers({'Content-Type': 'application/json'});
+	//private headers = new Headers({'Content-Type': 'application/json'});
 	private userUrl;
 	
 	constructor(private http: Http,private constant : Constant) { 

@@ -52,31 +52,40 @@ export class PushModal {
    */
   getLineVedio(url): void{
       
-      url = 'rtmp://push.bcelive.com/live/2or4444gbh7rfbipio';
+      //url = 'rtmp://video.airforceuav.com:1935/live/wak';
+      url = 'http://gkdp982dqqza47gihc1.exp.bcelive.com/lss-gm4k64ts8y7kevfi/live.m3u8';
+      //url = 'rtmp://play.bcelive.com/live/lss-gm4k64ts8y7kevfi';
+      let rtmpurl = 'rtmp://play.bcelive.com/live/lss-gm4k64ts8y7kevfi';
       console.log("test:"+url);
-      // var player = jwplayer('playerVideoBox').setup({
-      //     /*flashplayer: 'js/plugins/mediaplayer-5.7/player.swf',*/
-      //     file : url,
-      //     width : '100%',
-      //     height : '100%',
-      //     fallback : 'false',
-      //     autostart : 'true',
-      //     primary : 'flash',
-      //     rtmp : {
-      //         bufferlength : 0.1
-      //     }
-      // });
-      var player = cyberplayer("playerVideoBox").setup({
-        width: "100%",
-        height: 370,
-        stretching: "uniform",
-        file: "http://gkdp982dqqza47gihc1.exp.bcelive.com/lss-gm4k64ts8y7kevfi/live.m3u8",
-        autostart: true,
-        repeat: false,
-        volume: 90,
-        controls: true,
-        ak: 'ba77daba024d4bbe91fda6da0d600352' // 公有云平台注册即可获得accessKey
-    });
+      var player = jwplayer('playerVideoBox').setup(
+        {
+          // for web
+          // file : url,
+          // width : '100%',
+          // height : '370',
+          // fallback : 'false',
+          // autostart : 'true',
+          // primary : 'html5',
+          // rtmp : {
+          //     bufferlength : 0.1
+          // } 
+          
+          //for android
+          width : '100%',
+          height : '370',
+          playlist: [{
+            sources: [
+              { file: url },
+            ],
+          }],
+          sources: [{
+            file: url
+          }],
+          "primary": "html5",
+          "hlshtml": true,
+          androidhls:true
+        }
+      );
   };
   /**
    * [segmentChange 切换摄像头]
