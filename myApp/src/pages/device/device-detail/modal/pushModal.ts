@@ -41,7 +41,7 @@ export class PushModal {
    * [getPullAddress 获取摄像头播放地址]
    */
   getPullAddress(): void {
-    this.videoService.getPullAddress(this.id,this.cameraId).then(data => {
+    this.videoService.getPullAddress(this.id,this.cameraCode).then(data => {
       this.address = data.address;
       this.getLineVedio(data.address);
     });
@@ -51,11 +51,11 @@ export class PushModal {
    * @param {[string]} url [视频地址]
    */
   getLineVedio(url): void{
-      
+    url = url+'.m3u8'
       //url = 'rtmp://video.airforceuav.com:1935/live/wak';
       //url = 'http://gkdp982dqqza47gihc1.exp.bcelive.com/lss-gm4k64ts8y7kevfi/live.m3u8';
-      url = 'http://47.94.139.69/livehz/livestream.m3u8';
-      let rtmpurl = 'rtmp://play.bcelive.com/live/lss-gm4k64ts8y7kevfi';
+      //url = 'http://47.94.139.69/livehz/livestream.m3u8';
+      //let rtmpurl = 'rtmp://play.bcelive.com/live/lss-gm4k64ts8y7kevfi';
       console.log("test:"+url);
       var player = jwplayer('playerVideoBox').setup(
         {
@@ -93,8 +93,8 @@ export class PushModal {
    */
   segmentChange(_event):void{
     console.log(_event);
-    this.cameraId = _event;
-    //this.getPullAddress();
+    this.cameraCode = _event;
+    this.getPullAddress();
   }
   /**
    * [directorCamera description]
@@ -104,13 +104,14 @@ export class PushModal {
     this.videoService.directorCamera(this.id,this.cameraCode,direction);
   }
   ngOnInit(): void {
+    console.log(this.cameras);
     this.cameraLen = this.cameras.length;
-    if(length>0){
-      this.cameraId = this.cameras[0].camerId;
-      this.cameraSegment = this.cameraId;
+    if(this.cameraLen>0){
+      console.log("test")
+      //初始视频播放
+      this.getPullAddress();
     }
-    //初始视频播放
-    //this.getPullAddress();
-    this.getLineVedio("aa");
+    
+    //this.getLineVedio("aa");
   }
 }
