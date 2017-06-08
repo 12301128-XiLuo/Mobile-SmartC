@@ -53,8 +53,8 @@ export class PushModal {
   getLineVedio(url): void{
       
       //url = 'rtmp://video.airforceuav.com:1935/live/wak';
-      url = 'http://gkdp982dqqza47gihc1.exp.bcelive.com/lss-gm4k64ts8y7kevfi/live.m3u8';
-      //url = 'rtmp://play.bcelive.com/live/lss-gm4k64ts8y7kevfi';
+      //url = 'http://gkdp982dqqza47gihc1.exp.bcelive.com/lss-gm4k64ts8y7kevfi/live.m3u8';
+      url = 'http://47.94.139.69/livehz/livestream.m3u8';
       let rtmpurl = 'rtmp://play.bcelive.com/live/lss-gm4k64ts8y7kevfi';
       console.log("test:"+url);
       var player = jwplayer('playerVideoBox').setup(
