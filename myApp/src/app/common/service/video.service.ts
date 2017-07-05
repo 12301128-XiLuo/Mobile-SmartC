@@ -5,17 +5,18 @@ import { Camera } from '../entity/camera.entity'
 import { Constant } from '../constant/constant';
 
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 
 export class VideoService {
 	private videoUrl;
-	private headers = new Headers({'Content-Type': 'application/json'});
-
+	//private headers = new Headers({'Content-Type': 'application/json'});
+  private options : any;
 	constructor(private http: Http,private constant : Constant) { 
     this.videoUrl = constant.URL+'videos/';
+    this.options = new RequestOptions({withCredentials: true});
   }
 	
   	private handleError(error: any): Promise<any> {
@@ -77,7 +78,7 @@ export class VideoService {
     commonOperaGetFunc(url): Promise<any>{
       console.log(url);
       return this.http
-        .get(url)
+        .get(url,this.options)
         .toPromise()
         .then(response => response.json().data)
         .catch(this.handleError);

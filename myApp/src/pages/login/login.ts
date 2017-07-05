@@ -35,19 +35,28 @@ export class LoginPage {
 		this.userSevice.login(user.LoginName,user.LoginPwd).then(data => {
 			if(data.judge == "0"){
 				this.storageService.write('user',data.user);
-				// let ss = this.storageService.read<User>('user');
-    			//console.log(ss);
-        		this.navCtrl.push(TabsPage);
+				let me = this.storageService.read<User>('user');
+				let judge = this.judgePermission(me.role.p_ids);
+				if(judge) this.navCtrl.push(TabsPage);
+				else this.msgToast('用户无权限！');
         		
 			}else{
-				this.loginToast();
+				this.msgToast('用户名或密码错误！');
 			}
 		});
 	}
 
-	loginToast(): void{
+	judgePermission(permissions): boolean{
+		console.log(permissions);
+		let count = 0;
+		count += permissions.find(x=>x===21)==undefined?0:1;	
+		count += permissions.find(x=>x===112)==undefined?0:1;	
+		count += permissions.find(x=>x===313)==undefined?0:1;
+		return count==3?true:false;	
+	}
+	msgToast(msg): void{
 		let toast = this.toastCtrl.create({
-          message: '用户名或密码错误.',
+          message: msg,
           duration: 3000,
           position: 'bottom',
           showCloseButton: true,

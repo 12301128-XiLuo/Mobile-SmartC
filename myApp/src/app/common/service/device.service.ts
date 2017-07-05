@@ -5,7 +5,7 @@ import { Device } from '../entity/device.entity'
 import { Constant } from '../constant/constant';
 
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -14,10 +14,12 @@ export class DeviceService {
   private deviceUrl;  
 	private assignDeviceUrl;	
   private headers = new Headers({'Content-Type': 'application/json'});
+  private options : any;
 
 	constructor(private http: Http,private constant : Constant) { 
     this.deviceUrl = constant.URL+'deviceMonitor/';
     this.assignDeviceUrl = constant.URL+'assignDevice/';
+    this.options = new RequestOptions({withCredentials: true});
   }
 	
 	/**
@@ -25,7 +27,7 @@ export class DeviceService {
 	 * @return {Promise<Device[]>} [设备列表]
 	 */
   	getDevices(): Promise<Device[]> {
-    	return this.http.get(this.deviceUrl)
+    	return this.http.get(this.deviceUrl,this.options)
              .toPromise()
              .then(response => response.json().data.deviceStatusList as Device[])
              .catch(this.handleError);
@@ -43,7 +45,7 @@ export class DeviceService {
     getDeviceById(id): Promise<Device>{
       let url = this.assignDeviceUrl+id;
       return this.http
-          .get(url)
+          .get(url,this.options)
           .toPromise()
           .then(response => response.json().data.deviceInfo as Device)
           .catch(this.handleError);
@@ -86,13 +88,13 @@ export class DeviceService {
     }
 
     /**
-     * [commonOperatFunc 公共方法]
+     * [commonOperatGetFunc 公共方法]
      * @param {[type]} url  [访问地址]
      * @param {[type]} data [传输数据]
      */
     commonOperatGetFunc(url): Promise<any>{
       return this.http
-        .get(url)
+        .get(url,this.options)
         .toPromise()
         .then(res => res.json().data)
         .catch(this.handleError);

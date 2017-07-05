@@ -16,13 +16,13 @@ export class UserService {
 	private options: any;
 	constructor(private http: Http,private constant : Constant) { 
 	    this.userUrl = constant.URL+'users/';
-	    this.options = new RequestOptions({headers: this.getHeaders()});
+	    this.options = new RequestOptions({withCredentials: true,headers: this.getHeaders()});
 	}
 
 	login(username: string,password: string): Promise<any>{
 		let url = this.constant.URL+'login?username='+username+'&password='+Md5.hashStr(password).toString();
 	    return this.http      
-	      .get(url)
+	      .get(url,this.options)
 	      .toPromise()
 	      .then(response => response.json().data)
 	      .catch(this.handleError);
@@ -35,7 +35,7 @@ export class UserService {
 	logout(): Promise<any>{
 		let url = this.constant.URL + 'logout'
 		return this.http      
-	      .post(url,this.options)	      
+	      .post(url,{},this.options)	      
 	      .toPromise()
 	      .then(response => response.json().data)
 	      .catch(this.handleError);

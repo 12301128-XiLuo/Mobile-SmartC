@@ -14,7 +14,7 @@
 <ion-content padding class="outer-content">
   <div padding>
     <ion-segment [(ngModel)]="cameraSegment" (ngModelChange)="segmentChange($event)">
-      <ion-segment-button *ngFor="let camera of cameras" value="{{camera.cameraId}}">
+      <ion-segment-button *ngFor="let camera of cameras;let i = index" value="{{i+1}}">
         {{camera.cameraAngle}}
       </ion-segment-button>
     </ion-segment>

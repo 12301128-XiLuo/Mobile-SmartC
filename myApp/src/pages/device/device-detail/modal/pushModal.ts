@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
 
 import {Camera} from "../../../../app/common/entity/camera.entity";
+import {Constant} from "../../../../app/common/constant/constant";
+
+
 import { VideoService } from '../../../../app/common/service/video.service';
 //import * as jwplayer from 'jwplayer';
 declare var jwplayer: any;
@@ -16,15 +19,16 @@ export class PushModal {
   address : string;
   cameraId : number=null;
   cameraLen : number;
-  cameraSegment : number = 0;
-  cameraCode : number = 0;
+  cameraSegment : number = 1;
+  cameraCode : number = 1;
 
   constructor(
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
     public alertCtrl: AlertController,
-    private videoService: VideoService
+    private videoService: VideoService,
+    private constant: Constant
   ) {
     this.cameras = params.get("cameras");
     this.id = params.get("id");
@@ -52,7 +56,8 @@ export class PushModal {
    */
   getLineVedio(url): void{
     url = url+'.m3u8'
-      //url = 'rtmp://video.airforceuav.com:1935/live/wak';
+    //url = this.constant.hls+url.substring(this.constant.hls.length-5)+'.m3u8'
+    // url = 'http://192.168.0.105:8001/live/livestream.m3u8';
       //url = 'http://gkdp982dqqza47gihc1.exp.bcelive.com/lss-gm4k64ts8y7kevfi/live.m3u8';
       //url = 'http://47.94.139.69/livehz/livestream.m3u8';
       //let rtmpurl = 'rtmp://play.bcelive.com/live/lss-gm4k64ts8y7kevfi';

@@ -129,8 +129,12 @@ export class DeviceDetailPage {
 		let modal = this.modalCtrl.create(BuildClassModalPage);
 	    modal.onDidDismiss(data => {
 	    	if(typeof(data)!="undefined"){
-	    		this.videoService.startPullOperate(data.buildingNum,data.classroomNum,this.device.id);
-	    		this.videoStatusJudge();
+	    		this.videoService.startPullOperate(data.buildingNum,data.classroomNum,this.device.id).then(
+			        data=>{
+			          	let message = data.wSocketMessage;
+			          	this.handleMessage(message);
+			          	this.videoStatusJudge();
+			        });   		
 	    	}else{
 	    		this.pull = false;
 	    	}
@@ -168,6 +172,7 @@ export class DeviceDetailPage {
 		      duration: 3000
 	    });
 	    toast.present();
+	    this.getDeviceById(); 
 	  }
 
 

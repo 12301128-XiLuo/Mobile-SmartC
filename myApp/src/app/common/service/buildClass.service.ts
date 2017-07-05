@@ -3,9 +3,8 @@ import { BuildClass } from '../entity/buildclass.entity';
 import { Classroom } from '../entity/classroom.entity';
 import { Constant } from '../constant/constant';
 
-
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -13,18 +12,20 @@ import 'rxjs/add/operator/toPromise';
 export class BuildClassService {
 	private buildingUrl;
   private videoUrl;
-	private headers = new Headers({'Content-Type': 'application/json'});
+	//private headers = new Headers({'Content-Type': 'application/json'});
+  private options : any;
 
 	constructor(private http: Http,private constant : Constant) { 
     this.videoUrl = constant.URL+'videos/';
     this.buildingUrl = constant.URL+'buildingClassrooms/';
+    this.options = new RequestOptions({withCredentials: true});
   }
 	/**
 	 * [getBuildings 获取教学楼列表]
 	 * @return {Promise<Building[]>} [教学楼列表]
 	 */
 	getBuildings(): Promise<Building[]> {
-    	return this.http.get(this.buildingUrl+'buildings')
+    	return this.http.get(this.buildingUrl+'buildings',this.options)
              .toPromise()
              .then(response => response.json().data.buildingList as Building[])
              .catch(this.handleError);
@@ -40,38 +41,22 @@ export class BuildClassService {
 	 * @return {Promise<Classroom[]>}      [教室列表]
 	 */
 	getClassroomsByName(name: string): Promise<Classroom[]>{
-		// let url = this.classroomUrl;
-  //   let data = {"name":name}
-  //   console.log("buildClassService:"+name);
-  //   return this.http      
-  //     //.post(url, JSON.stringify(data), {headers: this.headers})
-  //     .get(url)
-  //     .toPromise()
-  //     .then(response => response.json().data.data.classroomList as Classroom[])
-  //     .catch(this.handleError);
-      let url = this.videoUrl + 'classroomByBuilding?name='+name;
-      let data = {
-        "name": name
-      };
-      return this.http
-              .get(url)
-              .toPromise()
-              .then(response => response.json().data.classroomList as Classroom[])
-              .catch(this.handleError);
+    let url = this.videoUrl + 'classroomByBuilding?name='+name;
+
+    return this.http
+            .get(url,this.options)
+            .toPromise()
+            .then(response => response.json().data.classroomList as Classroom[])
+            .catch(this.handleError);
 	}
   /**
    * [getPushBuildClass 获取正在推流的教学楼]
    * @return {Promise<Building[]>} [description]
    */
   getPushBuildings(): Promise<Building[]>{
-    return this.http.get(this.videoUrl+'pushBuilding')
+    return this.http.get(this.videoUrl+'pushBuilding',this.options)
              .toPromise()
              .then(response => response.json().data.buildingList as Building[])
              .catch(this.handleError);
-    // let url = "api/buildings"
-    // return this.http.get(url)
-    //          .toPromise()
-    //          .then(response => response.json().data.data.buildingList as Building[])
-    //          .catch(this.handleError);
   }
 }
