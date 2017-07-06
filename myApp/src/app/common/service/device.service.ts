@@ -3,7 +3,6 @@
  */
 import { Device } from '../entity/device.entity'
 import { Constant } from '../constant/constant';
-
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
@@ -18,7 +17,7 @@ export class DeviceService {
 
 	constructor(private http: Http,private constant : Constant) { 
     this.deviceUrl = constant.URL+'deviceMonitor/';
-    this.assignDeviceUrl = constant.URL+'assignDevice/';
+    this.assignDeviceUrl = constant.URL+'deviceMonitor/device/';
     this.options = new RequestOptions({withCredentials: true});
   }
 	
@@ -34,6 +33,10 @@ export class DeviceService {
   	}
   	private handleError(error: any): Promise<any> {
     	console.error('An error occurred', error); // for demo purposes only
+      if ( String(error).indexOf('token')) {
+        localStorage.removeItem('user');
+        location.reload();
+      }
     	return Promise.reject(error.message || error);
   	}
 

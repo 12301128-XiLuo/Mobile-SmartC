@@ -17,7 +17,7 @@ export class BuildClassService {
 
 	constructor(private http: Http,private constant : Constant) { 
     this.videoUrl = constant.URL+'videos/';
-    this.buildingUrl = constant.URL+'buildingClassrooms/';
+    //this.buildingUrl = constant.URL+'buildingClassrooms/';
     this.options = new RequestOptions({withCredentials: true});
   }
 	/**
@@ -25,13 +25,17 @@ export class BuildClassService {
 	 * @return {Promise<Building[]>} [教学楼列表]
 	 */
 	getBuildings(): Promise<Building[]> {
-    	return this.http.get(this.buildingUrl+'buildings',this.options)
+    	return this.http.get(this.videoUrl+'buildings',this.options)
              .toPromise()
              .then(response => response.json().data.buildingList as Building[])
              .catch(this.handleError);
   	}
 	private handleError(error: any): Promise<any> {
   	console.error('An error occurred', error); // for demo purposes only
+    if ( String(error).indexOf('token')) {
+      localStorage.removeItem('user');
+      location.reload();
+    }
   	return Promise.reject(error.message || error);
 	}
 

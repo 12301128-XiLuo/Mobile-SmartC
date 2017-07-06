@@ -21,6 +21,10 @@ export class VideoService {
 	
   	private handleError(error: any): Promise<any> {
     	console.error('An error occurred', error); // for demo purposes only
+      if ( String(error).indexOf('token')) {
+        localStorage.removeItem('user');
+        location.reload();
+      }
     	return Promise.reject(error.message || error);
   	}
 
