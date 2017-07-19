@@ -5,7 +5,7 @@ import { Message } from '../entity/message.entity'
 import { Constant } from '../constant/constant';
 
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()

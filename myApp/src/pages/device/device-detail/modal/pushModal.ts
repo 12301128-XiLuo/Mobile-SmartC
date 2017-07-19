@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
+import { Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
 
 import {Camera} from "../../../../app/common/entity/camera.entity";
 import {Constant} from "../../../../app/common/constant/constant";
@@ -62,35 +62,35 @@ export class PushModal {
       //url = 'http://47.94.139.69/livehz/livestream.m3u8';
       //let rtmpurl = 'rtmp://play.bcelive.com/live/lss-gm4k64ts8y7kevfi';
       console.log("test:"+url);
-      var player = jwplayer('playerVideoBox').setup(
-        {
-          // for web
-          // file : url,
-          // width : '100%',
-          // height : '370',
-          // fallback : 'false',
-          // autostart : 'true',
-          // primary : 'html5',
-          // rtmp : {
-          //     bufferlength : 0.1
-          // } 
+      // var player = jwplayer('playerVideoBox').setup(
+      //   {
+      //     // for web
+      //     // file : url,
+      //     // width : '100%',
+      //     // height : '370',
+      //     // fallback : 'false',
+      //     // autostart : 'true',
+      //     // primary : 'html5',
+      //     // rtmp : {
+      //     //     bufferlength : 0.1
+      //     // } 
           
-          //for android
-          width : '100%',
-          height : '370',
-          playlist: [{
-            sources: [
-              { file: url },
-            ],
-          }],
-          sources: [{
-            file: url
-          }],
-          "primary": "html5",
-          "hlshtml": true,
-          androidhls:true
-        }
-      );
+      //     //for android
+      //     width : '100%',
+      //     height : '370',
+      //     playlist: [{
+      //       sources: [
+      //         { file: url },
+      //       ],
+      //     }],
+      //     sources: [{
+      //       file: url
+      //     }],
+      //     "primary": "html5",
+      //     "hlshtml": true,
+      //     androidhls:true
+      //   }
+      // );
   };
   /**
    * [segmentChange 切换摄像头]

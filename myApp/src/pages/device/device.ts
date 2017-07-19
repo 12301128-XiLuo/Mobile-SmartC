@@ -7,7 +7,7 @@ import { NavController } from 'ionic-angular';
 //entity
 import { Device } from '../../app/common/entity/device.entity';
 import { Building } from '../../app/common/entity/building.entity';
-import { BuildClass } from '../../app/common/entity/buildclass.entity';
+//import { BuildClass } from '../../app/common/entity/buildclass.entity';
 import { Classroom } from '../../app/common/entity/classroom.entity';
 //service
 import { DeviceService } from '../../app/common/service/device.service';

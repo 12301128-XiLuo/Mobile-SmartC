@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
+import { Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
 
 import {Building} from "../../../../app/common/entity/building.entity";
 import {Classroom} from "../../../../app/common/entity/classroom.entity";

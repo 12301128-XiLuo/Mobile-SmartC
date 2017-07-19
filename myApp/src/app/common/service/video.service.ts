@@ -1,11 +1,11 @@
 /**
  * 设备service类
  */
-import { Camera } from '../entity/camera.entity'
+//import { Camera } from '../entity/camera.entity'
 import { Constant } from '../constant/constant';
 
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -30,10 +30,10 @@ export class VideoService {
 
     getPullAddress(id,code): Promise<any>{      
       let url = this.videoUrl+'play/'+id+'?code='+code;
-      let data = {
-        'did': id,
-        'code':code
-      };
+      // let data = {
+      //   'did': id,
+      //   'code':code
+      // };
       return this.commonOperaGetFunc(url);
     }
 
@@ -56,11 +56,11 @@ export class VideoService {
      */
     startPullOperate(inputBuilding,inputClassroom,id): Promise<any>{
       let url = this.videoUrl+'pull/'+id+'?buildingNum='+inputBuilding+'&classroomNum='+inputClassroom;
-      let data = {
-        "buildingNum":inputBuilding,
-        "classroomNum":inputClassroom,
-        "did":id
-      };
+      // let data = {
+      //   "buildingNum":inputBuilding,
+      //   "classroomNum":inputClassroom,
+      //   "did":id
+      // };
       return this.commonOperaGetFunc(url);
     }
 

@@ -1,4 +1,4 @@
-import {FormBuilder,FormControl,Validators,AbstractControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 
 export function usernameValidator(control: FormControl): { [s: string]: boolean } {

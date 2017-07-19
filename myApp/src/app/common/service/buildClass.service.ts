@@ -1,17 +1,15 @@
 import { Building } from '../entity/building.entity';
-import { BuildClass } from '../entity/buildclass.entity';
 import { Classroom } from '../entity/classroom.entity';
 import { Constant } from '../constant/constant';
 
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 
 export class BuildClassService {
-	private buildingUrl;
-  private videoUrl;
+	private videoUrl;
 	//private headers = new Headers({'Content-Type': 'application/json'});
   private options : any;
 
